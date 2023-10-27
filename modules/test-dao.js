@@ -46,9 +46,6 @@ async function deleteTestData(id) {
 }
 
 async function getUserWithCredentials(username, password) {
-    //return users.find(function(user) {
-   //     return user.username === username && user.password === password;
-   // });
 
    const db = await dbPromise;
    return await db.run(SQL`
