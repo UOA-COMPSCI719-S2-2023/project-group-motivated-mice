@@ -11,7 +11,7 @@ res.locals.title;
 res.locals.image;
 res.locals.content;
 res.locals.userId;
-res.locals.
+res.locals;
 // res.locals.locationId; For map API
 
 });
