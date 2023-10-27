@@ -45,6 +45,19 @@ async function deleteTestData(id) {
         where id = ${id}`);
 }
 
+async function getUserWithCredentials(username, password) {
+    //return users.find(function(user) {
+   //     return user.username === username && user.password === password;
+   // });
+
+   const db = await dbPromise;
+   return await db.run(SQL`
+       select id from Accounts
+       where db.UserName = username
+       and where db.Password = password`);
+}
+
+
 // Export functions.
 module.exports = {
     createTestData,
