@@ -1,13 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-const userDao = require("../modules/test-dao.js");
+const userDb = require("../modules/test-dao.js");
+const { error } = require("console");
 
 router.get("/create-account", function(req,res){
     res.render("create-account");
 });
 
 router.post("/create-account", async function(req,res){
+
     const userDetails = {
         "username": req.body.username,
         "password": req.body.password,
@@ -18,9 +20,27 @@ router.post("/create-account", async function(req,res){
         "des": req.body.des
     }
 
-    await userDao.createAcountData(userDetails);
+    await userDb.createAcountData(userDetails);
 
-    res.redirect("/create-account");
+    res.redirect("/");
+});
+
+//To check if the input username exists
+router.get("/check-username/:username", async function(req, res){
+    try{
+        const username = req.params.username;
+        const result = await userDb.retrieveUserName(username);
+
+        // console.log(result);
+
+        if(result){
+            res.json({exists: true});
+        }else{
+            res.json({exists: false});
+        }
+    }catch{
+        res.status(500).send(error.message);
+    }
 });
 
 module.exports = router;

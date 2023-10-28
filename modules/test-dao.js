@@ -61,6 +61,16 @@ async function createAcountData(userDetails) {
         return result.lastID; 
 }
 
+// code to check if the username exists in the database
+async function retrieveUserName(username) {
+    const db = await dbPromise;
+
+    return await db.get(SQL`
+        select UserName from Account 
+        where UserName = ${username}`);
+
+}
+
 // Export functions.
 module.exports = {
     createTestData,
@@ -69,4 +79,5 @@ module.exports = {
     updateTestData,
     deleteTestData,
     createAcountData,
+    retrieveUserName,
 };

@@ -1,0 +1,25 @@
+async function checkUsername() {
+    const usernameInput = document.querySelector("#username");
+    const username = usernameInput.value;
+    const messageElement = document.getElementById('username-message');
+
+    try {
+        const response = await fetch(`/check-username/${username}`);
+        const userData = await response.json();
+
+        if (userData.exists) {
+            messageElement.textContent = 'Username is already taken.';
+            messageElement.style.color = 'red';
+        } else {
+            messageElement.textContent = 'Username is available.';
+            messageElement.style.color = 'green';
+        }
+    } catch (error) {
+        console.error('An error occurred while checking the username:', error);
+        messageElement.textContent = 'An error occurred. Please try again later.';
+        messageElement.style.color = 'red';
+    }
+
+}
+
+

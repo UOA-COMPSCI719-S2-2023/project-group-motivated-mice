@@ -4,7 +4,8 @@
     <form action="/create-account" method="POST">
         <div>
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="username" name="username"  oninput="checkUsername()" required>
+            <span id="username-message"></span>
         </div>
 
         <div>
@@ -51,3 +52,5 @@
     </form>
 
 </div>
+
+<script src="js/client.js"></script>
