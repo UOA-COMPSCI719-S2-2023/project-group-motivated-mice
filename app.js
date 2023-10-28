@@ -38,3 +38,5 @@ app.use(require("./routes/application-routes.js"));
 app.listen(port, function () {
     console.log(`The Best App In The World ™️ listening on port ${port}!`);
 });
+
+app.use(express.static(path.join(__dirname, "js")));

@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 const testDao = require("../modules/test-dao.js");
+const articleRouter = require("./article-routes.js");
+router.use(articleRouter);
 
 router.get("/", async function(req, res) {
 
