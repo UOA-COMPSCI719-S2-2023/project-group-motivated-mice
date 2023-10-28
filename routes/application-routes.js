@@ -11,9 +11,6 @@ router.get("/", async function(req, res) {
     res.render("home");
 });
 
-router.get("/create-account",function(req, res){
-    res.render("create-account");
-});
 
 
 
