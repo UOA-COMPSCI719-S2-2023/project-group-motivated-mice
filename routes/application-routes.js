@@ -11,4 +11,7 @@ router.get("/", async function(req, res) {
     res.render("home");
 });
 
+const registerRoutes = require("./register-routes.js");
+router.use(registerRoutes);
+
 module.exports = router;

@@ -1,0 +1,43 @@
+<div>
+    <h1>Create an Acount</h1>
+
+    <form action="/create-acount" method="POST">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <div>
+            <label for="realName">Real Name:</label>
+            <input type="text" id="realName" name="realName" required>
+        </div>
+
+        <div>
+            <label for="birthday">Birthday:</label>
+            <input type="date" id="birthday" name="birthday" required>
+        </div>
+
+        <div>
+            <label for="des">About Me:</label>
+            <textarea id="des" name="des" rows="4" cols="50" placeholder="Tell us something about yourself"></textarea>
+        </div>
+
+        <div>
+            <label for="avatar">Choose an Avatar:</label>
+            <select id="avatar" name="avatar">
+                <option value="avatar1">Avatar 1</option>
+                <option value="avatar2">Avatar 2</option>
+                <option value="avatar3">Avatar 3</option>
+                <!-- Add more predefined avatars here -->
+            </select>
+        </div>
+
+        <button type="submit">Create Account</button>
+    </form>
+
+</div>
