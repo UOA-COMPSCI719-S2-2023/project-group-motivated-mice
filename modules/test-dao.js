@@ -45,11 +45,28 @@ async function deleteTestData(id) {
         where id = ${id}`);
 }
 
+async function createAcountData(userDetails) {
+    const db = await dbPromise;
+    
+    const result = await db.run(SQL`
+        insert into Account(Username, HashedPassword, 
+        FirstName, LastName, 
+        DateOfBirth, EmailAddress, About)
+        values
+        (${userDetails.username}, ${userDetails.password}, 
+        ${userDetails.firstName}, ${userDetails.lastName}, 
+        ${userDetails.birthday}, ${userDetails.email}, ${userDetails.des})
+        `);
+
+        return result.lastID; 
+}
+
 // Export functions.
 module.exports = {
     createTestData,
     retrieveTestDataById,
     retrieveAllTestData,
     updateTestData,
-    deleteTestData
+    deleteTestData,
+    createAcountData,
 };
