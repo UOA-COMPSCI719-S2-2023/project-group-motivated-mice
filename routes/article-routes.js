@@ -11,7 +11,9 @@ res.locals.title;
 res.locals.image;
 res.locals.content;
 res.locals.userId;
-res.locals.userName; // need to add this in the sql
+res.locals.location; //
+res.locals.about; // want to add this in the sql
+res.locals.userName; // want to add this in the sql
 // res.locals.locationId; For map API
 
 });
