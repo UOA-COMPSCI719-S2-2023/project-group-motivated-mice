@@ -4,20 +4,29 @@ const router = express.Router();
 const userDb = require("../modules/test-dao.js");
 const { error } = require("console");
 
+const bcrypt = require("bcrypt");
+const saltRounds = 10; //Choose the complexity of the encryption
+
 router.get("/create-account", function(req,res){
     res.render("create-account");
 });
 
 router.post("/create-account", async function(req,res){
 
+    const username = req.body.username;
+    const plainPassword = req.body.password;
+
+    const hashedPassword = await hashPassword(plainPassword);
+
     const userDetails = {
-        "username": req.body.username,
-        "password": req.body.password,
+        "username": username,
+        "password": hashedPassword,
         "firstName": req.body.firstName,
         "lastName": req.body.lastName,
         "birthday": req.body.birthday,
         "email": req.body.email,
-        "des": req.body.des
+        "des": req.body.des,
+        "avatar": req.body.avatar
     }
 
     await userDb.createAcountData(userDetails);
@@ -51,5 +60,15 @@ router.get("/get-avatars",async function(req,res){
     }
 });
 
+//password hashing and salting
+async function hashPassword(password) {
+    try {
+        const hash = await bcrypt.hash(password, saltRounds);
+        return hash;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
 
 module.exports = router;

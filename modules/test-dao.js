@@ -45,17 +45,19 @@ async function deleteTestData(id) {
         where id = ${id}`);
 }
 
+//store all data in database from the create account page
 async function createAcountData(userDetails) {
     const db = await dbPromise;
     
     const result = await db.run(SQL`
         insert into Account(Username, HashedPassword, 
         FirstName, LastName, 
-        DateOfBirth, EmailAddress, About)
+        DateOfBirth, EmailAddress, About, AvatarID)
         values
         (${userDetails.username}, ${userDetails.password}, 
         ${userDetails.firstName}, ${userDetails.lastName}, 
-        ${userDetails.birthday}, ${userDetails.email}, ${userDetails.des})
+        ${userDetails.birthday}, ${userDetails.email}, 
+        ${userDetails.des}, ${userDetails.avatar})
         `);
 
         return result.lastID; 
