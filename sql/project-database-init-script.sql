@@ -19,7 +19,7 @@ create table Avatar (
 
 --Create the Account table
 create table Account (
-    AccountID int primary key,
+    AccountID integer primary key AUTOINCREMENT,
     UserName VARCHAR(50),
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
