@@ -1,3 +1,5 @@
+//to check if the given username is taken, if taken show "Username is already taken",
+//if not show "Username is available" 
 async function checkUsername() {
     const usernameInput = document.querySelector("#username");
     const username = usernameInput.value;
@@ -22,18 +24,38 @@ async function checkUsername() {
 
 }
 
-function validatePasswords(){
+// to check if two passwords are match
+function validatePasswords() {
     const password = document.querySelector("#password").value;
     const confirmPassword = document.querySelector("#confirmPassword").value;
     const passwordMessage = document.querySelector("#password-message");
 
-    if(password != confirmPassword){
+    if (password != confirmPassword) {
         passwordMessage.textContent = "Passwords do not match!";
         passwordMessage.style.color = "red";
         return false; //prevent form submission
     }
 
-    return  true; //Allow form submission
+    return true; //Allow form submission
 }
+
+// Assume avatars is an array of avatar objects fetched from the server
+async function loadAvatars() {
+    const response = await fetch('/get-avatars');
+    const avatars = await response.json();
+
+    console.log(avatars);
+
+    const avatarSelect = document.querySelector('#avatar');
+    avatars.forEach(avatar => {
+        const option = document.createElement('option');
+        option.value = avatar.AvatarID;
+        option.textContent = avatar.AvatarID; // show the avatar Id info
+        avatarSelect.appendChild(option);
+    });
+}
+
+window.addEventListener("load", loadAvatars);
+
 
 

@@ -31,8 +31,6 @@ router.get("/check-username/:username", async function(req, res){
         const username = req.params.username;
         const result = await userDb.retrieveUserName(username);
 
-        // console.log(result);
-
         if(result){
             res.json({exists: true});
         }else{
@@ -42,5 +40,16 @@ router.get("/check-username/:username", async function(req, res){
         res.status(500).send(error.message);
     }
 });
+
+//the endpoint to get avatar data
+router.get("/get-avatars",async function(req,res){
+    try {
+        const avatars = await userDb.retrieveAllAvatars(); // a function define to interact with the database
+        res.json(avatars);
+    } catch (error) {
+        res.status(500).send('An error occurred while fetching avatars.');
+    }
+});
+
 
 module.exports = router;

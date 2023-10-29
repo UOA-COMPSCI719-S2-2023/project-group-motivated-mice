@@ -71,6 +71,15 @@ async function retrieveUserName(username) {
 
 }
 
+//to get all avatars from database
+async function retrieveAllAvatars(){
+    const db = await dbPromise;
+
+    const avatars = await db.all(SQL`select * from Avatar`);
+
+    return avatars;
+}
+
 // Export functions.
 module.exports = {
     createTestData,
@@ -80,4 +89,5 @@ module.exports = {
     deleteTestData,
     createAcountData,
     retrieveUserName,
+    retrieveAllAvatars,
 };
