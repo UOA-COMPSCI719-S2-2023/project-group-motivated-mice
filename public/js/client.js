@@ -22,4 +22,18 @@ async function checkUsername() {
 
 }
 
+function validatePasswords(){
+    const password = document.querySelector("#password").value;
+    const confirmPassword = document.querySelector("#confirmPassword").value;
+    const passwordMessage = document.querySelector("#password-message");
+
+    if(password != confirmPassword){
+        passwordMessage.textContent = "Passwords do not match!";
+        passwordMessage.style.color = "red";
+        return false; //prevent form submission
+    }
+
+    return  true; //Allow form submission
+}
+
 

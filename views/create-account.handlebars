@@ -1,7 +1,7 @@
 <div>
-    <h1>Create an Acount</h1>
+    <h1>Create an Account</h1>
 
-    <form action="/create-account" method="POST">
+    <form action="/create-account" method="POST" onsubmit="return validatePasswords();">
         <div>
             <label for="username">Username:</label>
             <input type="text" id="username" name="username"  oninput="checkUsername()" required>
@@ -11,6 +11,12 @@
         <div>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
+        </div>
+
+        <div>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <span id="password-message"></span>
         </div>
 
         <div>
