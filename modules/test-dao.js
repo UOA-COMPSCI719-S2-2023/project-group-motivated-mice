@@ -45,11 +45,22 @@ async function deleteTestData(id) {
         where id = ${id}`);
 }
 
+async function getUserWithCredentials(username, password) {
+
+   const db = await dbPromise;
+   console.log(username);
+   return await db.run(SQL`
+       select AccountID from Account
+       where UserName = ${username} AND HashedPassword = ${password}`);
+}
+
+
 // Export functions.
 module.exports = {
     createTestData,
     retrieveTestDataById,
     retrieveAllTestData,
     updateTestData,
-    deleteTestData
+    deleteTestData,
+    getUserWithCredentials
 };
