@@ -29,6 +29,7 @@ create table Account (
     Likes int,
     --Unsure if we should store password in seperate table for authentication?
     HashedPassword CHAR(60) NOT NULL,
+    AuthToken VARCHAR(128),
     AvatarID INT UNIQUE,  -- Unique constraint for one-to-one relationship
     FOREIGN KEY (AvatarID) REFERENCES Avatar(AvatarID)
 );
