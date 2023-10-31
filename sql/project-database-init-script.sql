@@ -10,6 +10,7 @@ drop table if exists Account;
 drop table if exists Articles;
 drop table if exists Images;
 drop table if exists Comments;
+drop table if exists Location;
 
 --Create the Avatar table
 create table Avatar (
@@ -38,11 +39,13 @@ create table Account (
 create table Articles (
     ArticleID int primary key,
     UserID int,
+    LocationID int,
     PublishDate timestamp,
     Likes int,
     Title VARCHAR(255) NOT NULL,
     Content text,
     FOREIGN KEY (UserID) REFERENCES Account(AccountID)  -- Establish the relationship
+    FOREIGN KEY (LocationID) REFERENCES Location(LocationID)
 );
 
 
@@ -68,3 +71,12 @@ create table Comments (
 -- Update the Articles table
 alter table Articles
 ADD Comments INT DEFAULT 0; -- Add a column to track the number of comments on each article
+
+-- creates the Location table
+create table Location (
+    LocationID int primary key,
+    Name VARCHAR(255) NOT NULL,
+    Description text,
+    Likes int,
+    Weather VARCHAR(255)
+);

@@ -1,0 +1,49 @@
+
+<script src="./js/client.js"></script>
+
+<div> 
+<h3>Top Locations</h3>
+<ul id="alllocationlist"></ul>
+    {{#each topLocations}}
+    <li id="{{this.LocationID}}" class="locationlistitems">{{this.Name}}</li>
+    {{/each}}
+</ul>
+
+<h3>All Locations</h3>
+ <ul id="alllocationlist">
+    {{#each allLocations}}
+    <li id="{{this.LocationID}}" class="locationlistitems">{{this.Name}}</li>
+    {{/each}}
+</ul>
+
+</div>
+
+
+<h3>this is where the location data should be</h3>
+{{#if locationDataName}}
+    {{#each locationData}}
+    <div id=" selected location info">  
+    <h2 id="selectedName">{{Name}}</h2>
+    <p id="selectedDescription">{{Description}}</p>
+    <p id="likes">{{likes}}</p>
+    <div id="weather">
+        <p>
+            testing
+        </p>
+    {{/each}}
+{{else}}
+    <p>info about nz</p>
+{{/if}}
+</div>
+
+<div id = "Articles">
+    <h3>Articles for location</h3>
+<table id="articleslist">
+   {{#each articlesByLocation}}
+    <tr id="{{this.LocationID}}" class="locationlistitems">{{this.Title}}</tr>
+   {{/each}}
+</table>
+
+
+
+</div>
