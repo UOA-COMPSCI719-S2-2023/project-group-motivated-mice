@@ -10,3 +10,7 @@ async function createPost(AuthorId, content, title) {
         VALUES(${AuthorId}, ${content}, ${title}, 0, datetime('now'))`);
 }
 
+module.exports = {
+    createPost
+    
+};
