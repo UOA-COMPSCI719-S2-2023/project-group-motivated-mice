@@ -1,6 +1,9 @@
 window.addEventListener("load", function () {
   console.log("the page is loaded;")
   const container = document.querySelector("#editor");
+  const form = document.querySelector("#form")
+
+
 
   const toolbarOptions = [
     ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -27,15 +30,16 @@ window.addEventListener("load", function () {
   };
   const editor = new Quill(container, options);
 
+  function getContent() {
+    let article = document.querySelector('[data-article_id]');
+    let justHTML = editor.root.innerHTML;
+    article.value = justHTML;
 
-
-  //in MDN submit event
-  function logForm(event) {
-    console.log("form submitted");
   }
 
+  form.addEventListener("submit", getContent);
 
-  
-  const form = document.querySelector("form");
-  form.addEventListener("submit", logForm);
+
+
+
 });
