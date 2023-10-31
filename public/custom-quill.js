@@ -1,5 +1,4 @@
 window.addEventListener("load", function () {
-  console.log("the page is loaded;")
   const container = document.querySelector("#editor");
   const form = document.querySelector("#form")
 
