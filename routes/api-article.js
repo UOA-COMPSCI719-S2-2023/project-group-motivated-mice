@@ -2,21 +2,26 @@ const express = require("express");
 const router = express.Router();
 
 const testDao = require("../modules/test-dao.js");
-const articleData = require()
-router.get("/entry", function (req, res) {
-    res.locals.title;
-    res.locals.publishDate;
-    res.locals.likes;
-    res.locals.title;
+const articleData = require("../modules/article-view.js")
+router.get("/entry", async function (req, res) {
+    const articleId = req.query.id;
+    const testId = 1;
+    const article = await articleData.viewPost(testId) ;
+    res.locals.article = article;
+    res.locals.articleEntry = true;
+
+    res.locals.publishDate = article.PublishDate;
+    res.locals.likes = article.Likes;
+    res.locals.title = article.Title;
     res.locals.image;
-    res.locals.content;
-    res.locals.userId;
+    res.locals.content = article.Content;
+    res.locals.userId = article.UserID;
     res.locals.location; //
     res.locals.about; // want to add this in the sql
     res.locals.userName; // want to add this in the sql
     // res.locals.locationId; For map API
-    res.locals.articleEntry = true;
-    
+   
+    res.render("article");
 
 });
 
