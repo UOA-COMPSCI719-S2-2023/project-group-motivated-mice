@@ -3,10 +3,9 @@ const router = express.Router();
 
 const testDao = require("../modules/test-dao.js");
 const articleData = require("../modules/article-view.js")
-router.get("/entry", async function (req, res) {
-    const articleId = req.query.id;
-    const testId = 1;
-    const article = await articleData.viewPost(testId) ;
+router.get("/entry/:id", async function (req, res) {
+    const articleId = req.params['id'];
+    const article = await articleData.viewPost(articleId) ;
     res.locals.article = article;
     res.locals.articleEntry = true;
 
