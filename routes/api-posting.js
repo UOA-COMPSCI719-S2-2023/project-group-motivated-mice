@@ -6,7 +6,7 @@ router.use(express.urlencoded({ extended: true }));
 router.use(express.json({}));
 
 const testDao = require("../modules/test-dao.js");
-const postArticle = require("../modules/article-author.js");
+const postArticle = require("../modules/article-posting.js");
 
 
 router.get("/posting", function (req, res) {

@@ -12,5 +12,4 @@ async function createPost(AuthorId, content, title) {
 
 module.exports = {
     createPost
-    
 };

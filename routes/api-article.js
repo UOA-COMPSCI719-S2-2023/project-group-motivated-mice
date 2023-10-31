@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const testDao = require("../modules/test-dao.js");
-
+const articleData = require()
 router.get("/entry", function (req, res) {
     res.locals.title;
     res.locals.publishDate;
@@ -16,7 +16,7 @@ router.get("/entry", function (req, res) {
     res.locals.userName; // want to add this in the sql
     // res.locals.locationId; For map API
     res.locals.articleEntry = true;
-    res.render("posting");
+    
 
 });
 
