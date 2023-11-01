@@ -1,9 +1,9 @@
 
-<script src="./js/client.js"></script>
+<script src="./location.js"></script>
 
 <div> 
 <h3>Top Locations</h3>
-<ul id="alllocationlist"></ul>
+<ul id="toplocationlist">
     {{#each topLocations}}
     <li id="{{this.LocationID}}" class="locationlistitems">{{this.Name}}</li>
     {{/each}}
@@ -18,32 +18,32 @@
 
 </div>
 
-
-<h3>this is where the location data should be</h3>
 {{#if locationDataName}}
-    {{#each locationData}}
     <div id=" selected location info">  
-    <h2 id="selectedName">{{Name}}</h2>
-    <p id="selectedDescription">{{Description}}</p>
-    <p id="likes">{{likes}}</p>
+    <h3 id="selectedName">About {{this.locationDataName}}</h3>
+    <p id="selectedDescription">Description: {{this.locationDataDescription}}</p>
+    <p id="likes">Location likes: {{this.locationLikes}}</p>
     <div id="weather">
-        <p>
-            testing
-        </p>
-    {{/each}}
+        <h3>Weather in {{this.locationDataName}} right now</h3>
+        <p>Temperature:{{this.tempAtLocation}} celcius</p>
+        <p>Humidity: {{this.humidity}}%</p>
+        <p>UV Index: {{this.uvindex}} </p>
+        <p>Wind Speed: {{this.windspeed}} km/ph</p>
+        <p>Cover: {{this.cloudcover}}%</p> 
+        
 {{else}}
-    <p>info about nz</p>
+    <h3 id="selectedName">About New Zealand</h3>
+    <p>New Zealand is a welcoming, diverse country with a history of Māori, European, Pacific Island, and Asian immigration. 
+        This rich blend of cultures, combined with geologically fascinating landscapes and unique flora and fauna, make New Zealand an exciting country to explore.
+        Click on one of the locations listed to explore article about the area.</p>
 {{/if}}
 </div>
 
 <div id = "Articles">
     <h3>Articles for location</h3>
-<table id="articleslist">
-   {{#each articlesByLocation}}
-    <tr id="{{this.LocationID}}" class="locationlistitems">{{this.Title}}</tr>
-   {{/each}}
-</table>
-
-
-
+     <ul id="articlesbylocationlist">
+    {{#each articlesByLocation}}
+        <li id="{{this.ArticleID}}" class="locationlistitems">{{this.Title}}</li>
+    {{/each}}  
+    </ul> 
 </div>

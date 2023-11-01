@@ -1,6 +1,6 @@
 window.addEventListener("load", function () {
    
-   addeventlisteners()
+addeventlisteners()
    
     function addeventlisteners(){
       document.querySelectorAll('.locationlistitems').forEach(item => {

@@ -78,5 +78,6 @@ create table Location (
     Name VARCHAR(255) NOT NULL,
     Description text,
     Likes int,
-    Weather VARCHAR(255)
+    Latitude VARCHAR(255),
+    Longitude VARCHAR(255)
 );

@@ -32,7 +32,7 @@ async function retrieveTopLocations() {
 async function retrieveArticlesByLocationId(id) {
     const db = await dbPromise;
 
-    const data = await db.get(SQL`
+    const data = await db.all(SQL`
         select * from Articles
         where LocationID = ${id}`);
 
@@ -46,5 +46,5 @@ module.exports = {
 retrieveLocationById,
 retrieveAllLocations,
 retrieveTopLocations,
-retrieveArticlesByLocationId
+retrieveArticlesByLocationId,
 };
