@@ -2,13 +2,13 @@ const express = require("express");
 const router = express.Router();
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json({}));
-const postArticle = require("../modules/article-posting.js");
 const upload = require("../middleware/multer-uploader.js");
+const imageUpload = require("../modules/upload-image.js");
 
 
 router.post("/uploadImage", upload.single("imageFile"), function (req, res) {
     const fileInfo = req.file;
-    postArticle.linkImageToArticle(fileInfo);
+    imageUpload.linkImageToArticle(fileInfo);
     res.redirect("/");
 });
 

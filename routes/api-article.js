@@ -3,6 +3,7 @@ const router = express.Router();
 
 const testDao = require("../modules/test-dao.js");
 const articleData = require("../modules/article-view.js")
+const imagesData = require("../modules/article-posting.js")
 router.get("/entry/:id", async function (req, res) {
     const articleId = req.params['id'];
     const article = await articleData.viewPost(articleId) ;
@@ -12,7 +13,7 @@ router.get("/entry/:id", async function (req, res) {
     res.locals.publishDate = article.PublishDate;
     res.locals.likes = article.Likes;
     res.locals.title = article.Title;
-    res.locals.image;
+    res.locals.imageSrc; 
     res.locals.content = article.Content;
     res.locals.userId = article.UserID;
     res.locals.location; //
