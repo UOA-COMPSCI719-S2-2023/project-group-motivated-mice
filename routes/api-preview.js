@@ -8,9 +8,7 @@ const upload = require("../middleware/multer-uploader.js");
 
 router.post("/uploadImage", upload.single("imageFile"), function (req, res) {
     const fileInfo = req.file;
-    postArticle.renameImage(fileInfo);
-    
-  
+    postArticle.linkImageToArticle(fileInfo);
     res.redirect("/");
 });
 

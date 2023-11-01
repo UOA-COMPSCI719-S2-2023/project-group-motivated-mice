@@ -6,9 +6,9 @@
 
 --Drop tables if they already exist
 drop table if exists Articles;
+drop table if exists Images;
 drop table if exists Account;
 drop table if exists Avatar;
-drop table if exists Images;
 drop table if exists Comments;
 
 --Create the Avatar table
@@ -44,8 +44,8 @@ create table Articles (
 
 -- Create the Image table
 create table Images (
-    ImageID int primary key,
-    ArticleID int,  -- Associates an image with an article
+    ImageID  INTEGER NOT NULL primary key,
+    ArticleID INTEGER,  -- Associates an image with an article
     ImageURL VARCHAR(255) NOT NULL,  -- Stores the URL to the image file
     FOREIGN KEY (ArticleID) REFERENCES Articles(ArticleID)
 );
@@ -72,7 +72,7 @@ insert into Account (UserName, FirstName, LastName, EmailAddress, DateOfBirth, A
 ('digimon', 'John', 'Smith', 'john.smith@gmail.com', date('1966-02-05'), 'Windows Me is the best Windows', 0);
 
 insert into Articles (UserID, PublishDate, Likes, Title, Content) values 
-(1,date('2023-10-25'), '0', 'hello', 'hello world');
+(1,date('2023-10-25'), '0', 'hello', '<p>hello world<p>');
 
 
 
