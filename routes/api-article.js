@@ -16,7 +16,6 @@ router.get("/entry/:id", async function (req, res) {
     res.locals.content = article.Content;
     res.locals.userId = article.UserID;
     res.locals.location; //
-    res.locals.about; // want to add this in the sql
     res.locals.userName; // want to add this in the sql
     // res.locals.locationId; For map API
    

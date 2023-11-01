@@ -30,7 +30,7 @@ window.addEventListener("load", function () {
   const editor = new Quill(container, options);
 
   function getContent() {
-    let article = document.querySelector('[data-article_id]');
+    let article = document.querySelector('#article');
     let justHTML = editor.root.innerHTML;
     article.value = justHTML;
   }
