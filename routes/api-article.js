@@ -2,11 +2,12 @@ const express = require("express");
 const router = express.Router();
 
 const testDao = require("../modules/test-dao.js");
-const articleData = require("../modules/article-view.js")
-const imagesData = require("../modules/article-posting.js")
+const articleData = require("../modules/read-article.js")
+const imagesData = require("../modules/make-article.js")
 router.get("/entry/:id", async function (req, res) {
     const articleId = req.params['id'];
-    const article = await articleData.viewPost(articleId) ;
+    const article = await articleData.retrieveArticle(articleId) ;
+    
     res.locals.article = article;
     res.locals.articleEntry = true;
 

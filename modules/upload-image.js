@@ -25,6 +25,12 @@ async function getMostRecentArticle(AuthorId) {
     return await articleId;
 }
 
+async function getImageFromId(articleId) {
+    const db = await dbPromise;
+    const image = await db.get()
+
+}
+
 module.exports = {
     linkImageToArticle
 };
