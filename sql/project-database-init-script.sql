@@ -5,11 +5,11 @@
  */
 
 --Drop tables if they already exist
-drop table if exists Articles;
+drop table if exists Comments;
 drop table if exists Images;
+drop table if exists Articles;
 drop table if exists Account;
 drop table if exists Avatar;
-drop table if exists Comments;
 
 --Create the Avatar table
 create table Avatar (
@@ -33,7 +33,7 @@ create table Account (
 -- Create the Articles table
 create table Articles (
     ArticleID INTEGER NOT NULL primary key,
-    UserID int,
+    UserID INTEGER,
     PublishDate timestamp,
     Likes int,
     Title VARCHAR(255) NOT NULL,
@@ -72,8 +72,12 @@ insert into Account (UserName, FirstName, LastName, EmailAddress, DateOfBirth, A
 ('digimon', 'John', 'Smith', 'john.smith@gmail.com', date('1966-02-05'), 'Windows Me is the best Windows', 0);
 
 insert into Articles (UserID, PublishDate, Likes, Title, Content) values 
-(1,date('2023-10-25'), '0', 'hello', '<p>hello world<p>');
+(1,date('2023-10-25'), '0', 'hello', '<p>hello world<p>'),
+(2,date('2023-10-15'), '0', 'hello', '<p>How are you<p>');
+insert into Images (ImageURL, ArticleID) VALUES
+('./public/images/download (2).jpg', 2);
 
-
+insert into Images (ImageURL, ArticleID) VALUES
+('./public/images/download (1).jpg', 1);
 
  
