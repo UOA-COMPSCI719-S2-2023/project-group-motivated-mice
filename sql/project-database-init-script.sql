@@ -19,14 +19,19 @@ create table Avatar (
 
 --Create the Account table
 create table Account (
-    AccountID INTEGER NOT NULL primary key,
+    AccountID INTEGER NOT NULL primary key AUTOINCREMENT,
     UserName VARCHAR(50),
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
     EmailAddress VARCHAR(100),
     DateOfBirth date,
     About text,
-    Likes int
+    Likes int,
+    --Unsure if we should store password in seperate table for authentication?
+    HashedPassword CHAR(60) NOT NULL,
+    AuthToken VARCHAR(128),
+    AvatarID INT UNIQUE,  -- Unique constraint for one-to-one relationship
+    FOREIGN KEY (AvatarID) REFERENCES Avatar(AvatarID)
 );
 
 
@@ -65,7 +70,6 @@ create table Comments (
 alter table Articles
 ADD Comments INT DEFAULT 0; -- Add a column to track the number of comments on each article
 
-
 --for testing 
 insert into Account (UserName, FirstName, LastName, EmailAddress, DateOfBirth, About, Likes) values
 ('pokemon', 'Jane', 'Doe', 'jane.doe@gmail.com', date('1980-10-05'), 'hello world', 0),
@@ -79,5 +83,3 @@ insert into Images (ImageURL, ArticleID) VALUES
 
 insert into Images (ImageURL, ArticleID) VALUES
 ('./public/images/download (1).jpg', 1);
-
- 
