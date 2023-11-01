@@ -6,15 +6,14 @@ const jimp = require("jimp");
 async function linkImageToArticle(fileInfo) {
     const oldFileName = fileInfo.path;
     const newFileName = `./public/images/${fileInfo.originalname}`;
-    const filePath = newFileName;
-    fs.renameSync( oldFileName , newFileName );
-    await addImageToSQL(filePath);
+    fs.renameSync(oldFileName, newFileName);
+    await addImageToSQL(fileInfo.originalname);
 };
 
-async function addImageToSQL(filePath) {
+async function addImageToSQL(nameOfImage) {
     const db = await dbPromise;
-    const ArticleID = await getMostRecentArticle(2);    
-    await db.run(SQL`insert into Images (ImageURL, ArticleID) VALUES (${filePath}, ${ArticleID})`);
+    const ArticleID = await getMostRecentArticle(2);
+    await db.run(SQL`insert into Images (nameOfImage, ArticleID) VALUES (${nameOfImage}, ${ArticleID})`);
 }
 
 async function getMostRecentArticle(AuthorId) {
@@ -27,10 +26,11 @@ async function getMostRecentArticle(AuthorId) {
 
 async function getImageFromId(articleId) {
     const db = await dbPromise;
-    const image = await db.get()
-
+    const image = await db.get(SQL`SELECT * FROM Images WHERE ArticleID = ${articleId}`)
+    return await image;
 }
 
 module.exports = {
-    linkImageToArticle
+    linkImageToArticle,
+    getImageFromId
 };
