@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User Profile</title>
+</head>
+
+<body>
+    <h1>User Profile</h1>
+    <p>{{user.avatar}}</p>
+    <p>Username: {{user.username}}</p>
+    <p>First Name: {{user.firstName}}</p>
+    <p>Last Name: {{user.lastName}}</p>
+    <h3>Articles:</h3>
+    <ul>
+        {{#each articles}}
+        <li>
+            <p>{{title}}</p>
+            <p>{{content}}</p>
+        </li>
+        {{/each}}
+    </ul>
+</body>
+
+</html>
