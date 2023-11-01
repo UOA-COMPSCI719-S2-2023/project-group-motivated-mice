@@ -55,6 +55,43 @@ async function getUserWithCredentials(username, password) {
 }
 
 
+//store all data in database from the create account page
+async function createAcountData(userDetails) {
+    const db = await dbPromise;
+    
+    const result = await db.run(SQL`
+        insert into Account(Username, HashedPassword, 
+        FirstName, LastName, 
+        DateOfBirth, EmailAddress, About, AvatarID)
+        values
+        (${userDetails.username}, ${userDetails.password}, 
+        ${userDetails.firstName}, ${userDetails.lastName}, 
+        ${userDetails.birthday}, ${userDetails.email}, 
+        ${userDetails.des}, ${userDetails.avatar})
+        `);
+
+        return result.lastID; 
+}
+
+// code to check if the username exists in the database
+async function retrieveUserName(username) {
+    const db = await dbPromise;
+
+    return await db.get(SQL`
+        select UserName from Account 
+        where UserName = ${username}`);
+
+}
+
+//to get all avatars from database
+async function retrieveAllAvatars(){
+    const db = await dbPromise;
+
+    const avatars = await db.all(SQL`select * from Avatar`);
+
+    return avatars;
+}
+
 // Export functions.
 module.exports = {
     createTestData,
@@ -62,5 +99,8 @@ module.exports = {
     retrieveAllTestData,
     updateTestData,
     deleteTestData,
-    getUserWithCredentials
+    getUserWithCredentials,
+    createAcountData,
+    retrieveUserName,
+    retrieveAllAvatars,
 };
