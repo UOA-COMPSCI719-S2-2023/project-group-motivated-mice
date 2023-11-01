@@ -5,30 +5,41 @@
 <h3> By {{userName}}</h3>
 <h3>{{publishDate}}</h3>
 
+
+{{#if preview}}
+<script src="./storeArticleId.js"></script>
+
 <div id="content">
     {{{content}}}
 </div>
 <div id="images">
-    {{#if preview}}
+
     <form action="./uploadImage" method="POST" enctype="multipart/form-data">
         <label for="inpFile">Upload an image here!</label>
-            <input id="inpFile" type="file" name="imageFile" accept=".png,.jpg,.jpeg,.bmp">
-            <label for="txtCaption">Caption:</label>
-                <input id="txtCaption" type="text" name="caption">
-                <button type="submit">Upload!</button>
+        <input id="inpFile" type="file" name="imageFile" accept=".png,.jpg,.jpeg,.bmp">
+        <label for="txtCaption">Caption:</label>
+        <input id="txtCaption" type="text" name="caption">
+        <input type="hidden" name="articleId">
+        <button type="submit">Upload!</button>
     </form>
     {{else}}
-    {{image}}
+
+    <div id="content">
+        {{{content}}}
+    </div>
+    <div id="images">
+        {{image}}
+    </div>
     {{/if}}
-</div>
-<div id="tags">
 
-</div>
-<div id="author_info" data-author={{userId}}>
-    {{about}}
-</div>
+    <div id="tags">
 
-{{else}}
-<p>No articles available </p>
+    </div>
+    <div id="author_info" data-author={{userId}}>
+        {{about}}
+    </div>
 
-{{/if}}
+    {{else}}
+    <p>No articles available </p>
+
+    {{/if}}

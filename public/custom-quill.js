@@ -33,7 +33,6 @@ window.addEventListener("load", function () {
     let article = document.querySelector('[data-article_id]');
     let justHTML = editor.root.innerHTML;
     article.value = justHTML;
-
   }
 
   form.addEventListener("submit", getContent);

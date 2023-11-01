@@ -21,11 +21,9 @@ router.post("/writeArticle", async function (req,res){
  const previewArticleId = await postArticle.retrieveSingleArticleId(userId, content);
  console.log("🚀 ~ file: api-posting.js:22 ~ previewArticleId:", previewArticleId)
  res.locals.title = title;
- res.locals.userName;
  res.locals.articleEntry = true;
  res.locals.preview = true;
  res.locals.content = content;
- res.locals.about;
  res.render("article");
 })
 module.exports = router;
