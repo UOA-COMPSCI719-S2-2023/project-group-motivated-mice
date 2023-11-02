@@ -5,9 +5,10 @@ const jimp = require("jimp");
 
 async function linkImageToArticle(fileInfo, userID) {
     const oldFileName = fileInfo.path;
+    const originalName = fileInfo.originalname;
     const folderName = `./public/images/${userID}`;
-    try{
-        if (!fs.existsSync(folderName)){
+    try {
+        if (!fs.existsSync(folderName)) {
             fs.mkdirSync(folderName);
         }
     } catch (err) {
@@ -15,8 +16,27 @@ async function linkImageToArticle(fileInfo, userID) {
     }
     const newFileName = `${folderName}/${fileInfo.originalname}`;
     fs.renameSync(oldFileName, newFileName);
+    await makePreviewFolder(newFileName, originalName);
+
+
     // await addImageToSQL(fileInfo.originalname);
 };
+
+async function makePreviewFolder(newFileName, originalName) {
+    const folderName = `./public/images/preview`;
+    try {
+        if (!fs.existsSync(folderName)) {
+            fs.mkdirSync(folderName);
+        }
+    } catch (err) {
+        console.error(err);
+    }
+    const image = await jimp.read(newFileName);
+   image.resize(320, jimp.AUTO);
+   await image.writeAsync(`${folderName}/${originalName}`);
+}
+
+
 
 async function addImageToSQL(nameOfImage) {
     const db = await dbPromise;
@@ -40,5 +60,5 @@ async function getImageFromId(articleId) {
 
 module.exports = {
     linkImageToArticle,
-    getImageFromId
+    getImageFromId,
 };
