@@ -3,11 +3,19 @@ const dbPromise = require("./database.js");
 const fs = require("fs");
 const jimp = require("jimp");
 
-async function linkImageToArticle(fileInfo) {
+async function linkImageToArticle(fileInfo, userID) {
     const oldFileName = fileInfo.path;
-    const newFileName = `./public/images/${fileInfo.originalname}`;
+    const folderName = `./public/images/${userID}`;
+    try{
+        if (!fs.existsSync(folderName)){
+            fs.mkdirSync(folderName);
+        }
+    } catch (err) {
+        console.error(err);
+    }
+    const newFileName = `${folderName}/${fileInfo.originalname}`;
     fs.renameSync(oldFileName, newFileName);
-    await addImageToSQL(fileInfo.originalname);
+    // await addImageToSQL(fileInfo.originalname);
 };
 
 async function addImageToSQL(nameOfImage) {
