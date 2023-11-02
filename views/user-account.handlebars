@@ -1,0 +1,23 @@
+<div>
+    <img src="{{avatar.ImageFilePath}}" alt="User Avatar">
+    <p>User Name:{{user.UserName}}</p>
+    <p>About:{{user.About}}</p>
+</div>
+
+<section>
+    <h2>Articles written by {{user.UserName}}</h2>
+    <ul>
+        {{#each articles}}
+        <li><a href="/articles/{{this.ArticleID}}">{{this.Title}}</a></li>
+        {{/each}}
+    </ul>
+</section>
+
+<section>
+    <h2>Top Articles</h2>
+    <ul>
+        {{#each topArticles}}
+        <li><a href="/articles/{{this.ArticleID}}">{{this.Title}}</a></li>
+        {{/each}}
+    </ul>
+</section>

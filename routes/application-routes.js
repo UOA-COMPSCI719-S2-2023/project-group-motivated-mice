@@ -15,4 +15,8 @@ router.get("/", async function(req, res) {
 const registerRoutes = require("./register-routes.js");
 router.use(registerRoutes);
 
+//routes
+const userAccountRoutes = require("./user-routes.js")
+router.use(userAccountRoutes);
+
 module.exports = router;
