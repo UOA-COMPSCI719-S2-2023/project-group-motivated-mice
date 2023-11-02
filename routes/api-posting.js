@@ -19,9 +19,11 @@ router.post("/writeArticle", async function (req,res){
  const content = req.body.article;
  await postArticle.createPost(userId, content, title);
  res.locals.title = title;
- res.locals.articleEntry = true;
  res.locals.preview = true;
  res.locals.content = content;
- res.render("article");
+ res.locals.images;
+ res.setToastMessage("Content Uploaded!");
+  res.render("article");
 })
+
 module.exports = router;
