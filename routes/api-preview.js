@@ -1,15 +1,15 @@
 const express = require("express");
 const router = express.Router();
-router.use(express.urlencoded({ extended: true }));
-router.use(express.json({}));
-const upload = require("../middleware/multer-uploader.js");
-const imageUpload = require("../modules/upload-image.js");
+const fs = require("fs");
 
+router.get("/preview", function (req, res) {
+    const userID = 1;
+    res.locals.user = userID;
+    res.setToastMessage("Image Uploaded!");
+    let fileNames = fs.readdirSync("public/images/preview");
+    res.locals.images = fileNames;
 
-router.post("/uploadImage", upload.single("imageFile"), function (req, res) {
-    const fileInfo = req.file;
-    imageUpload.linkImageToArticle(fileInfo);
-    res.redirect("/");
+    res.render("posting");
 });
 
 module.exports = router;
