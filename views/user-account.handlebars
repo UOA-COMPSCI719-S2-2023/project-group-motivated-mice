@@ -1,11 +1,11 @@
 <div>
-    <img src="{{avatar.ImageFilePath}}" alt="User Avatar">
+    <img src="{{avatar.ImageFilePath}}" alt="User Avatar" class="avatar">
     <p>User Name:{{user.UserName}}</p>
     <p>About:{{user.About}}</p>
 </div>
 
 <section>
-    <h2>Articles written by {{user.UserName}}</h2>
+    <h3>Articles written by {{user.UserName}}:</h3>
     <ul>
         {{#each articles}}
         <li><a href="/articles/{{this.ArticleID}}">{{this.Title}}</a></li>
@@ -14,7 +14,7 @@
 </section>
 
 <section>
-    <h2>Top Articles</h2>
+    <h3>Top Articles</h3>
     <ul>
         {{#each topArticles}}
         <li><a href="/articles/{{this.ArticleID}}">{{this.Title}}</a></li>

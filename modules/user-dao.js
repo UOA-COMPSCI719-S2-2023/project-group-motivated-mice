@@ -16,8 +16,8 @@ async function retrieveAvatarById(id) {
     const db = await dbPromise;
 
     const avatar = await db.get(SQL`
-        select * from Account
-        where AccountID = ${id}`);
+        select * from Avatar
+        where AvatarID = ${id}`);
 
     return avatar;
 }
