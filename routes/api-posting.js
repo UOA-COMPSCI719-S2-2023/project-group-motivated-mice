@@ -4,12 +4,16 @@ const router = express.Router();
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json({}));
 
+const fs = require("fs");
+
 const testDao = require("../modules/test-dao.js");
 const postArticle = require("../modules/make-article.js");
 
 
 router.get("/posting", function (req, res) {
     res.locals.articleEntry = true;
+    let fileNames = fs.readdirSync("public/images/preview");
+    res.locals.images = fileNames;
     res.render("posting");
 });
 
@@ -21,8 +25,10 @@ router.post("/writeArticle", async function (req,res){
  res.locals.title = title;
  res.locals.preview = true;
  res.locals.content = content;
- res.locals.images;
- res.setToastMessage("Content Uploaded!");
+ 
+ const message = `Content Uploaded!`;
+
+ res.setToastMessage(message);
   res.render("article");
 })
 
