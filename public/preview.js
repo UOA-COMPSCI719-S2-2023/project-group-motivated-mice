@@ -6,7 +6,13 @@ window.addEventListener("load", function () {
     if (files) {
       Array.prototype.forEach.call(files, readAndPreview);
     }
-   
+    const result =  sessionStorage.getItem("gallery");
+    
+  }
+
+  function saveInLocalstorage(reader){
+    sessionStorage.setItem("gallery", reader.result);
+    console.log("result is " + reader.result);
   }
 
   function readAndPreview(file) {
@@ -18,15 +24,22 @@ window.addEventListener("load", function () {
     if(extension ==="jpg"){
       loadAfterEvent(file, reader);
       reader.readAsDataURL(file);
+
       return;
     }else if(extension === "png"){
       loadAfterEvent(file, reader);
       reader.readAsDataURL(file);
+
       return;
     }else if(extension === "jpeg") {
       loadAfterEvent(file, reader);
       reader.readAsDataURL(file);
+
       return;
+    }else if(extension === "bmp"){
+      loadAfterEvent(file, reader);
+      reader.readAsDataURL(file);
+
     }else {
       console.log("Extension not valid");
       return;
@@ -36,7 +49,6 @@ window.addEventListener("load", function () {
 
   function loadAfterEvent(file, reader) {
     const preview = document.querySelector("#preview");
-    console.log("🚀 ~ file: preview.js:45 ~ loadAfterEvent ~ preview:", preview)
     reader.addEventListener(
       "load",
       () => {
@@ -46,6 +58,7 @@ window.addEventListener("load", function () {
         console.log(image.title);
         image.src = reader.result;
         preview.appendChild(image);
+        saveInLocalstorage(reader);
       },
       false,
     );
