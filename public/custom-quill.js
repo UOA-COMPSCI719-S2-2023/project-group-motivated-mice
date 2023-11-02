@@ -1,8 +1,7 @@
 window.addEventListener("load", function () {
+
   const container = document.querySelector("#editor");
-  const form = document.querySelector("#form")
-
-
+  const form = document.querySelector("#form");
 
   const toolbarOptions = [
     ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -15,7 +14,6 @@ window.addEventListener("load", function () {
     [{ 'font': [] }],
     [{ 'align': [] }],
     ['image'],
-
     ['clean']                                         // remove formatting button
   ];
 
@@ -36,8 +34,5 @@ window.addEventListener("load", function () {
   }
 
   form.addEventListener("submit", getContent);
-
-
-
 
 });
