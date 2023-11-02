@@ -1,20 +1,60 @@
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 <script src="./custom-quill.js"></script>
 <form id="form" action="./writeArticle" method="POST">
     <label for="title">Title of the post</label>
     <input type="text" id="title" name="title" required maxlength="255"><br><br>
-
     <div id="toolbar">
-
     </div>
-    <input type="hidden" id="article" name="article" >
+    <input type="hidden" id="article" name="article">
     <div id="editor">
-
     </div>
 
     <br /><br />
 
-    
     <button id="submit-button" type="submit">Submit form</button>
+    {{#if toastMessage}}
+    <p> {{toastMessage}}</p>
+    {{/if}}
+</form>
 
+<form action="./uploadImage" method="POST" enctype="multipart/form-data">
+    <label for="inpFile">Upload an image here!</label>
+    <input id="inpFile" type="file" name="imageFile" accept=".png,.jpg,.jpeg,.bmp">
+
+    <input type="hidden" name="articleId">
+    <button type="submit">Upload!</button>
+    {{#if toastMessage}}
+    <p> {{toastMessage}}</p>
+    {{/if}}
+</form>
+
+<form action="./chooseThumbnail" method="GET">
+    {{#if images}}
+    <p>These are the fantastic images you've uploaded:</p>
+
+    <p>Upload even more fantastic images!</p>
+
+
+    <fieldset>
+        <legend>Please select an image for your thumbnail:</legend>
+        <div class="grid-3">
+            {{#each images}}
+            <div class="card">
+                <a href="./images/preview/{{this}}"><img class="card-header card-img"
+                        src="./images/preview/{{this}}"></a>
+                <div class="card-body flex-row justify-center">
+                    <p><em>{{this}}</em></p>
+                </div>
+                <input type="radio" data-choice={{@index}} name="contact" value={{this}} />
+            </div>
+            {{/each}}
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </fieldset>
+    {{else}}
+    <p>You haven't uploaded any images yet. Please use the form above to add some!</p>
+    {{/if}}
 </form>
