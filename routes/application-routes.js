@@ -17,13 +17,14 @@ router.get("/location", async function(req, res) {
     res.locals.title = "Locations";
     res.locals.allLocations = await locationDAO.retrieveAllLocations();
     res.locals.topLocations = await locationDAO.retrieveTopLocations();
-    res.locals.articlesByLocation= await locationDAO.retrieveArticlesByLocationId("01");
+    
 
 
-    const locationData = await locationDAO.retrieveLocationById();
+    const locationData = await locationDAO.retrieveLocationById("7");
 
 
     if (locationData){
+    res.locals.articlesByLocation= await locationDAO.retrieveArticlesByLocationId("7");
     res.locals.title = locationData.Name;
     res.locals.locationDataName = locationData.Name;
     res.locals.locationDataDescription = locationData.Description;
