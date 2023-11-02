@@ -10,9 +10,9 @@ window.addEventListener("load", function () {
     
   }
 
-  function saveInLocalstorage(reader){
+  function saveInLocalstorage(reader, image){
     sessionStorage.setItem("gallery", reader.result);
-    console.log("result is " + reader.result);
+    sessionStorage.setItem("imageName", image.title)
   }
 
   function readAndPreview(file) {
@@ -55,10 +55,9 @@ window.addEventListener("load", function () {
         const image = new Image();
         image.height = 300;
         image.title = file.name;
-        console.log(image.title);
         image.src = reader.result;
         preview.appendChild(image);
-        saveInLocalstorage(reader);
+        saveInLocalstorage(reader, image);
       },
       false,
     );
