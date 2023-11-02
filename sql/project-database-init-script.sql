@@ -26,12 +26,9 @@ create table Account (
     EmailAddress VARCHAR(100),
     DateOfBirth date,
     About text,
-    Likes int,
+    Likes int
     --Unsure if we should store password in seperate table for authentication?
-    HashedPassword CHAR(60) NOT NULL,
-    AuthToken VARCHAR(128),
-    AvatarID INT UNIQUE,  -- Unique constraint for one-to-one relationship
-    FOREIGN KEY (AvatarID) REFERENCES Avatar(AvatarID)
+
 );
 
 
@@ -51,8 +48,10 @@ create table Articles (
 create table Images (
     ImageID  INTEGER NOT NULL primary key,
     ArticleID INTEGER,  -- Associates an image with an article
-    ImageURL VARCHAR(255) NOT NULL,  -- Stores the URL to the image file
-    FOREIGN KEY (ArticleID) REFERENCES Articles(ArticleID)
+    ImageURL VARCHAR(255) NOT NULL,  -- Stores the URL to the image file,
+	Thumbnail INTEGER, -- stores the ArticleID for which image is a thumbnail
+    FOREIGN KEY (ArticleID) REFERENCES Articles(ArticleID),
+	FOREIGN KEY (Thumbnail) REFERENCES Articles(ArticleID)
 );
 
 -- Create the Comments table
