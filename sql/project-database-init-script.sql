@@ -20,7 +20,7 @@ create table Avatar (
 
 --Create the Account table
 create table Account (
-    AccountID int primary key,
+    AccountID integer primary key AUTOINCREMENT,
     UserName VARCHAR(50),
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
@@ -30,6 +30,7 @@ create table Account (
     Likes int,
     --Unsure if we should store password in seperate table for authentication?
     HashedPassword CHAR(60) NOT NULL,
+    AuthToken VARCHAR(128),
     AvatarID INT UNIQUE,  -- Unique constraint for one-to-one relationship
     FOREIGN KEY (AvatarID) REFERENCES Avatar(AvatarID)
 );
