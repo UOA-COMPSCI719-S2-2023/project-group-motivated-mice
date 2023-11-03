@@ -6,7 +6,14 @@ window.addEventListener("load", function () {
   uploadForm.addEventListener("change", previewFiles);
 
   function uploadImages() {
-    
+    let imageNameForm = document.querySelector('#imageNames');
+    let imageDataForm = document.querySelector('#imageData');
+
+    const imageNameArray = Object.keys(sessionStorage);
+    const imageDataArray = Object.values(sessionStorage);
+
+    imageNameForm.value = imageNameArray;
+    imageDataForm.value = imageDataArray;
   }
 
   function previewFiles() {
@@ -14,6 +21,7 @@ window.addEventListener("load", function () {
     if (files) {
       Array.prototype.forEach.call(files, readAndPreview);
     }
+    uploadImages();
   }
 
   function readAndPreview(file) {
@@ -51,13 +59,30 @@ window.addEventListener("load", function () {
     reader.addEventListener(
       "load",
       () => {
+        let currentimages = sessionStorage.getItem("images")
+
         const image = new Image();
         image.height = 300;
         image.title = file.name;
         image.src = reader.result;
-        sessionStorage.setItem(image.title, reader.result);
-        listTheImages(file, image);
-        
+        let imageDetail = {
+          "imageName": image.title,
+          "imageData": reader.result
+        };
+        if (currentimages == null) {
+          currentimages = [];
+          currentimages.push(imageDetail);
+          let currentarray = JSON.stringify(currentimages);
+          sessionStorage.setItem("images", currentarray);
+          listTheImages(file, image);
+        } else {
+          let currentParse = JSON.parse(currentimages);
+          currentParse.push(imageDetail);
+          let currentarray = JSON.stringify(currentParse);
+          sessionStorage.setItem("images", currentarray);
+          listTheImages(file, image);
+        }
+
       },
       false,
     );
