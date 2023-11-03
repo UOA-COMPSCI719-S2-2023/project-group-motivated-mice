@@ -38,6 +38,9 @@ app.use(authRouter);
 const appRouter = require("./routes/application-routes.js");
 app.use(appRouter);
 
+const authorRouter = require("./routes/author-routes.js");
+app.use(authorRouter);
+
 // Start the server running.
 app.listen(port, function () {
     console.log(`The Best App In The World ™️ listening on port ${port}!`);
