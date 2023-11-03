@@ -1,9 +1,31 @@
-<h1>My stuff:</h1>
-<ul>
-    {{#each allTestData}}
-    <li>{{this.stuff}}</li>
-    {{/each}}
-</ul>
-
-<h1>A dragon:</h1>
-<img src="./images/Dragonite.png">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{pageTitle}}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/account/{{user.id}}">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Top Articles</h2>
+        <ul>
+            {{#each articles}}
+            <li>
+                <h3>{{title}}</h3>
+                <p>{{content}}</p>
+                <p>Published by {{author}} on {{publishDate}}</p>
+            </li>
+            {{/each}}
+        </ul>
+    </main>
+</body>
+</html>

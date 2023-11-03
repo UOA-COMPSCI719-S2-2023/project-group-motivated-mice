@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // The DAO that handles CRUD operations for users.
-const accountDao = require("../modules/account-dao.js");
+const accountDao = require("../modules/test-dao.js");
 
 // Define route for view another user's profile.
 router.get("/profile/:userId", async function (req, res) {
