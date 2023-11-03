@@ -20,7 +20,9 @@ router.get("/posting", function (req, res) {
 router.post("/writeArticle",  upload.array("imageFile"), async function (req, res) {
   const userId = 2;
   const images = req.files;
-  uploadImage.linkImageToArticle(images, userId);
+  const firstImage = images[0];
+
+  uploadImage.linkImageToArticle(images, userId, firstImage);
   const title = req.body.title;
   
   // await uploadImage.linkImageToArticle(imageData, userId);

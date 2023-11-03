@@ -4,16 +4,18 @@ const fs = require("fs");
 const jimp = require("jimp");
 const postingDao = require("./posting-dao.js");
 
-async function linkImageToArticle(images, userId) {
+async function linkImageToArticle(images, userId, firstImage) {
     makeUserFolder(userId);
     //adding images to the user's folder
+    const nameArray = [];
     images.forEach(element => {
         const oldFileName = element.path;
         const newFileName = `./public/images/${userId}/${element.originalname}`;
         fs.renameSync(oldFileName, newFileName);
+        nameArray.push(element.originalname);
     });
-    let fileNames = fs.readdirSync(`./public/images/${userId}`);
-    await postingDao.addImageToSQL(fileNames, userId);
+    const thumbnailName = firstImage.originalname;
+    await postingDao.addImageToSQL(nameArray, userId, thumbnailName);
 
 };
 
