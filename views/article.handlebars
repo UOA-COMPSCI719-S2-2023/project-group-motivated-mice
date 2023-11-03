@@ -6,41 +6,21 @@
 <h3>{{publishDate}}</h3>
 
 
-{{#if preview}}
-<script src="./storeArticleId.js"></script>
 
 <div id="content">
     {{{content}}}
 </div>
 <div id="images">
 
-    <form action="./uploadImage" method="POST" enctype="multipart/form-data">
-        <label for="inpFile">Upload an image here!</label>
-        <input id="inpFile" type="file" name="imageFile" accept=".png,.jpg,.jpeg,.bmp">
-        
-        <input type="hidden" name="articleId">
-        <button type="submit">Upload!</button>
-    </form>
-    {{else}}
-
-    <div id="content">
-        {{{content}}}
-    </div>
-  <div class="grid-3">
-        <div>
-            <img src="../images/{{images}}"></a>
-        </div>
-    </div>
-    {{/if}}
-
-    <div id="tags">
-
-    </div>
+    {{#each images}}
+    
+    {{/each }}
     <div id="author_info" data-author={{userId}}>
         {{about}}
     </div>
-
     {{else}}
-    <p>No articles available </p>
+    <p>No article available.</p>
+{{/if}}
 
-    {{/if}}
+
+ 
