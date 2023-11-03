@@ -77,8 +77,3 @@ insert into Account (UserName, FirstName, LastName, EmailAddress, DateOfBirth, A
 insert into Articles (UserID, PublishDate, Likes, Title, Content) values 
 (1,date('2023-10-25'), '0', 'hello', '<p>hello world<p>'),
 (2,date('2023-10-15'), '0', 'hello', '<p>How are you<p>');
-insert into Images (ImageURL, ArticleID) VALUES
-('./public/images/download (2).jpg', 2);
-
-insert into Images (ImageURL, ArticleID) VALUES
-('./public/images/download (1).jpg', 1);
