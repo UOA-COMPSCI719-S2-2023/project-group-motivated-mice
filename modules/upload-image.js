@@ -5,14 +5,15 @@ const jimp = require("jimp");
 
 async function linkImageToArticle(images, userId) {
     makeUserFolder(userId);
+    //adding images to the user's folder
     images.forEach(element => {
-         
         const oldFileName = element.path;
-        console.log("🚀 ~ file: upload-image.js:10 ~ linkImageToArticle ~ oldFileName:", oldFileName)
         const newFileName = `./public/images/${userId}/${element.originalname}`;
         fs.renameSync(oldFileName, newFileName);
     });
-    await addImageToSQL(newFileName);
+    let fileNames = fs.readdirSync(`./public/images/${userId}`);
+    await addImageToSQL(fileNames, userId);
+
 };
 
 async function makeUserFolder(userID) {
@@ -27,10 +28,13 @@ async function makeUserFolder(userID) {
 
 }
 
-async function addImageToSQL(nameOfImage, userID) {
+async function addImageToSQL(namesOfImage, userID) {
     const db = await dbPromise;
     const ArticleID = await getMostRecentArticle(userID);
-    await db.run(SQL`insert into Images (nameOfImage, ArticleID) VALUES (${nameOfImage}, ${ArticleID})`);
+    //Looping the list of names of images to link image to an Article ID
+    for await (const name of namesOfImage) {
+        db.run(SQL`insert into Images (imageURL, ArticleID) VALUES (${name}, ${ArticleID})`);
+    } 
 }
 
 async function getMostRecentArticle(userID) {
