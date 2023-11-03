@@ -42,8 +42,11 @@ app.use(appRouter);
 const authorRouter = require("./routes/author-routes.js");
 app.use(authorRouter);
 
+
 const registerRouter = require("./routes/register-routes.js");
 app.use(registerRouter);
+
+
 
 // Start the server running.
 app.listen(port, function () {
