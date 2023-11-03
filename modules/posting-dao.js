@@ -9,7 +9,7 @@ async function addImageToSQL(namesOfImage, userID, thumbnailName) {
         console.log("🚀 ~ file: posting-dao.js:9 ~ forawait ~ namesOfImage:", namesOfImage)
         db.run(SQL`insert into Images (imageURL, ArticleID) VALUES (${name}, ${ArticleID})`);
     }
-    // await assignLastImgAsThumbnail(ArticleID, thumbnailName);
+    await assignLastImgAsThumbnail(ArticleID, thumbnailName);
 }
 
 async function getMostRecentArticle(userID) {
