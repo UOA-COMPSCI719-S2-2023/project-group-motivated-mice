@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const testDao = require("../modules/test-dao.js");
+const locationDAO = require("../modules/location-dao.js");
 
 router.get("/", async function(req, res) {
 
@@ -10,6 +11,20 @@ router.get("/", async function(req, res) {
 
     res.render("home");
 });
+
+
+router.get("/location", async function(req, res) {
+
+    res.locals.title = "Locations";
+    res.locals.allLocations = await locationDAO.retrieveAllLocations();
+    res.locals.topLocations = await locationDAO.retrieveTopLocations();
+    res.render("location");
+});
+
+router.use("/api", require("./api/api-routes.js"));
+
+
+
 
 
 const registerRoutes = require("./register-routes.js");
