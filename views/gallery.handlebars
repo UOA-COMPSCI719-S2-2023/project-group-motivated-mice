@@ -1,21 +1,19 @@
 <div class="container">
-    <h1>Image gallery</h1>
+    <h1>ARTICLE INDEX / NAVIGATION</h1>
 
-    {{#if images}}
-    <p>These are the fantastic images you've uploaded:</p>
-    <div class="grid-3">
-        {{#each images}}
-        <div class="card">
-            <a href="./images/{{this}}"><img class="card-header card-img" src="./images/thumbnails/{{this}}"></a>
-            <div class="card-body flex-row justify-center">
-                <p><em>{{this}}</em></p>
-            </div>
-        </div>
-        {{/each}}
+    {{#each articles}}
+    <div class="article-item">
+        <p>
+            {{Title}}
+        </p>
+        <p>{{PublishDate}}</p>
     </div>
-    {{else}}
-    <p>No articles uploaded yet</p>
-    {{/if}}
-
+    {{/each }}
     
+    <div class="article-thumbnail">
+
+    </div>
+
+
+
 </div>
