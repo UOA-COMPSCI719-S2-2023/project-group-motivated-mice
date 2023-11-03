@@ -1,18 +1,19 @@
 window.addEventListener("load", function () {
+  const form = document.querySelector("#form");
+  const uploadForm = document.querySelector("#uploadImage");
 
+  form.addEventListener("submit", uploadImages);
+  uploadForm.addEventListener("change", previewFiles);
+
+  function uploadImages() {
+    
+  }
 
   function previewFiles() {
     const files = document.querySelector("input[type=file]").files;
     if (files) {
       Array.prototype.forEach.call(files, readAndPreview);
     }
-    const result =  sessionStorage.getItem("gallery");
-    
-  }
-
-  function saveInLocalstorage(reader, image){
-    sessionStorage.setItem("gallery", reader.result);
-    sessionStorage.setItem("imageName", image.title)
   }
 
   function readAndPreview(file) {
@@ -21,34 +22,32 @@ window.addEventListener("load", function () {
     const fileName = file.name;
     const extension = fileName.split('.').pop();
 
-    if(extension ==="jpg"){
+    if (extension === "jpg") {
       loadAfterEvent(file, reader);
       reader.readAsDataURL(file);
 
       return;
-    }else if(extension === "png"){
+    } else if (extension === "png") {
       loadAfterEvent(file, reader);
       reader.readAsDataURL(file);
 
       return;
-    }else if(extension === "jpeg") {
+    } else if (extension === "jpeg") {
       loadAfterEvent(file, reader);
       reader.readAsDataURL(file);
 
       return;
-    }else if(extension === "bmp"){
+    } else if (extension === "bmp") {
       loadAfterEvent(file, reader);
       reader.readAsDataURL(file);
 
-    }else {
+    } else {
       console.log("Extension not valid");
       return;
     }
-
   }
 
   function loadAfterEvent(file, reader) {
-    const preview = document.querySelector("#preview");
     reader.addEventListener(
       "load",
       () => {
@@ -56,13 +55,32 @@ window.addEventListener("load", function () {
         image.height = 300;
         image.title = file.name;
         image.src = reader.result;
-        preview.appendChild(image);
-        saveInLocalstorage(reader, image);
+        sessionStorage.setItem(image.title, reader.result);
+        listTheImages(file, image);
+        
       },
       false,
     );
-    
   }
-  const uploadForm = document.querySelector("#uploadImage");
-  uploadForm.addEventListener("change", previewFiles);
+
+  function listTheImages(file, image) {
+    const preview = document.querySelector("#preview");
+    const selection = document.createElement("input");
+    const label = document.createElement("label")
+
+    selection.setAttribute("type", "radio");
+    selection.id = file.name;
+    selection.setAttribute("name", "thumbnail");
+    selection.setAttribute("value", file.name);
+
+    label.setAttribute("for", selection.id);
+
+    label.appendChild(image);
+    preview.appendChild(selection);
+    preview.appendChild(label);
+    const br = document.querySelector("br");
+    preview.appendChild(br);
+  }
+
+
 });
