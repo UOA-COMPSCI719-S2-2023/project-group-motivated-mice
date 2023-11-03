@@ -39,12 +39,9 @@ app.use(require("./middleware/toaster-middleware.js"));
 app.use(require("./routes/application-routes.js"));
 const articleRouter = require("./routes/api-posting.js");
 const articleViewer = require("./routes/api-article.js");
-const articlePreview = require("./routes/api-preview.js");
-const uploadImage = require("./routes/api-uploadImage.js");
+
 app.use(articleViewer);
 app.use(articleRouter);
-app.use(articlePreview);
-app.use(uploadImage);
 
 // Start the server running.
 app.listen(port, function () {
