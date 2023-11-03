@@ -1,5 +1,6 @@
 
 <script src="./location.js"></script>
+
 <div> 
 <h3>Top Locations</h3>
 <ul id="toplocationlist">
@@ -16,33 +17,25 @@
 </ul>
 
 </div>
-
-{{#if locationDataName}}
     <div id=" selected location info">  
-    <h3 id="selectedName">About {{this.locationDataName}}</h3>
-    <p id="selectedDescription">Description: {{this.locationDataDescription}}</p>
-    <p id="likes">Location likes: {{this.locationLikes}}</p>
+    <h3 id="selectedName">About New Zealand</h3>
+    <p id="selectedDescription">New Zealand is a welcoming, diverse country with a history of Māori, European, Pacific Island, and Asian immigration. 
+        This rich blend of cultures, combined with geologically fascinating landscapes and unique flora and fauna, make New Zealand an exciting country to explore.
+        Click on one of the locations listed to explore information and articles about the area</p>
+    <p id="likes"></p>
     <div id="weather">
-        <h3 id="weathername">Weather in {{this.locationDataName}} right now</h3>
-        <p id="temperature">Temperature:{{this.tempAtLocation}} celcius</p>
-        <p id="humidity">Humidity: {{this.humidity}}%</p>
-        <p id="uvindex">UV Index: {{this.uvindex}} </p>
-        <p id="windspeed">Wind Speed: {{this.windspeed}} km/ph</p>
-        <p id="cloudcover">Cloud Cover: {{this.cloudcover}}%</p> 
+        <h3 id="weathername"></h3>
+        <p id="temperature"></p>
+        <p id="humidity"></p>
+        <p id="uvindex"></p>
+        <p id="windspeed"></p>
+        <p id="cloudcover"></p> 
     </div>
 
     <div id = "Articles">
-    <h3>Articles for location</h3>
+    <h3 id="articlesforlocationtitle"></h3>
      <ul id="articlesbylocationlist">
- 
     </ul> 
 </div>
         
-{{else}}
-    <h3 id="selectedName">About New Zealand</h3>
-    <p>New Zealand is a welcoming, diverse country with a history of Māori, European, Pacific Island, and Asian immigration. 
-        This rich blend of cultures, combined with geologically fascinating landscapes and unique flora and fauna, make New Zealand an exciting country to explore.
-        Click on one of the locations listed to explore information and articles about the area.</p>
-{{/if}}
-</div>
 

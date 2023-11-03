@@ -20,6 +20,7 @@ router.get("/location", async function(req, res) {
     res.render("location");
 });
 
+router.use("/api", require("./api/api-routes.js"));
 
 
 
