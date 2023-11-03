@@ -9,7 +9,8 @@ const accountDao = require("../modules/account-dao.js");
 // Otherwise, render the "login" view.
 router.get("/login", function (req, res) {
 
-    if (res.locals.user) {
+    if (req.cookies.authToken) {
+       
         res.redirect("/");
     }
 
