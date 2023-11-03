@@ -31,6 +31,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // Use the toaster middleware
 app.use(require("./middleware/toaster-middleware.js"));
 
+
 // Setup routes
 const authRouter = require("./routes/auth-routes.js");
 app.use(authRouter);
@@ -40,6 +41,12 @@ app.use(appRouter);
 
 const authorRouter = require("./routes/author-routes.js");
 app.use(authorRouter);
+
+
+const registerRouter = require("./routes/register-routes.js");
+app.use(registerRouter);
+
+
 
 // Start the server running.
 app.listen(port, function () {
