@@ -4,6 +4,8 @@ const router = express.Router();
 const testDao = require("../modules/test-dao.js");
 const articleData = require("../modules/read-article.js")
 const imagesData = require("../modules/upload-image.js")
+
+// render an article
 router.get("/entry/:id", async function (req, res) {
     const articleId = req.params['id'];
     const article = await articleData.retrieveArticle(articleId);
