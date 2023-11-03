@@ -6,7 +6,6 @@ async function addImageToSQL(namesOfImage, userID, thumbnailName) {
     const ArticleID = await getMostRecentArticle(userID);
     //Looping the list of names of images to link image to an Article ID
     for await (const name of namesOfImage) {
-        console.log("🚀 ~ file: posting-dao.js:9 ~ forawait ~ namesOfImage:", namesOfImage)
         db.run(SQL`insert into Images (imageURL, ArticleID) VALUES (${name}, ${ArticleID})`);
     }
     await assignLastImgAsThumbnail(ArticleID, thumbnailName);
@@ -58,11 +57,13 @@ async function retrieveTitlesOfAllArticles() {
 
 
 
-async function getLastImageOfArticle(articleId) {
+async function retrieveAllThumbnails(articleId) {
     const db = await dbPromise;
-
-
-
+    const thumbnails = await db.all(SQL`
+    SELECT * 
+    FROM Images 
+    WHERE Thumbnail IS NOT NULL`);
+    return thumbnails;
 }
 
 module.exports = {
@@ -72,6 +73,6 @@ module.exports = {
     getImagesFromId,
     retrieveAllArticles,
     retrieveTitlesOfAllArticles,
-    assignLastImgAsThumbnail
-
+    assignLastImgAsThumbnail,
+    retrieveAllThumbnails
 };

@@ -4,12 +4,10 @@
     <h1>ARTICLE INDEX / NAVIGATION</h1>
     <div class="article-list">
         {{#each articles }}
-        <button>
-            <p>
-                {{ArticleID}}
-                {{Title}}
-            </p>
-            <p>{{PublishDate}}</p>
+        <button data-article="{{ArticleID}}">
+        <a href="./entry/{{ArticleID}}">{{Title}}<br> 
+        <p>{{PublishDate}}</p>
+        </a>
         </button>
         {{/each}}
     </div>

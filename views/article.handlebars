@@ -1,26 +1,25 @@
 {{#if articleEntry}}
 <h1>
-    {{title}}
+    {{article.Title}}
 </h1>
-<h3> By {{userName}}</h3>
-<h3>{{publishDate}}</h3>
+<h3> By {{article.UserID}}</h3>
+<h3>{{article.PublishDate}}</h3>
 
 
 
 <div id="content">
-    {{{content}}}
+    {{{article.Content}}}
 </div>
 <div id="images">
 
     {{#each images}}
-    
+
     {{/each }}
-    <div id="author_info" data-author={{userId}}>
-        {{about}}
-    </div>
+    <a href="" id="author_info" data-author={{article.UserID}}>
+        author's page
+    </a>
+    <a href="">Edit the article</a>
+    <a href="">Delete the article</a>
     {{else}}
     <p>No article available.</p>
-{{/if}}
-
-
- 
+    {{/if}}
