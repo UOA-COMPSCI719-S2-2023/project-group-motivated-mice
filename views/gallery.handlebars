@@ -1,19 +1,17 @@
+<script src="./galleryMenu.js"></script>
+
 <div class="container">
     <h1>ARTICLE INDEX / NAVIGATION</h1>
-
-    {{#each articles}}
-    <div class="article-item">
-        <p>
-            {{Title}}
-        </p>
-        <p>{{PublishDate}}</p>
+    <div class="article-list">
+        {{#each articles }}
+        <button>
+            <p>
+                {{ArticleID}}
+                {{Title}}
+            </p>
+            <p>{{PublishDate}}</p>
+        </button>
+        {{/each}}
     </div>
-    {{/each }}
-    
-    <div class="article-thumbnail">
-
-    </div>
-
-
 
 </div>
