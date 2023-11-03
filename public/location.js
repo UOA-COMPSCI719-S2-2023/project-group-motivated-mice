@@ -22,7 +22,6 @@ addeventlisteners();
     const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${LocationSelected.Latitude}&lon=${LocationSelected.Longitude}&exclude=minutely,hourly,daily,alerts&units=metric&appid=04a1f24d5b23131ed6fcb89c0e53be9a`);
     const weather = await response.json();
     const response2 =  await fetch(`/api/location/articles/${LocationSelected.LocationID}`);
-    console.log(weather);
     const articles = await response2.json();
     const selectedName = document.getElementById("selectedName");
     const selectedDescription = document.getElementById("selectedDescription");
@@ -34,6 +33,7 @@ addeventlisteners();
     const windspeed = document.getElementById("windspeed")
     const cloudcover = document.getElementById("cloudcover")
     const articlesbylocationlist = document.getElementById("articlesbylocationlist")
+    const articlesforlocationtitle = document.getElementById("articlesforlocationtitle")
 
     selectedName.innerHTML = "About "+LocationSelected.Name;
     selectedDescription.innerHTML = LocationSelected.Description;
@@ -45,6 +45,8 @@ addeventlisteners();
     uvindex.innerHTML = "UV Index: "+weather.current.uvi;
     cloudcover.innerHTML = "Cloud Cover: "+weather.current.clouds+" %";
     
+    articlesforlocationtitle.innerHTML = "Articles about "+ LocationSelected.Name;
+
     articles.forEach(function(arrayItem){
     var li = document.createElement("li");
     li.appendChild(document.createTextNode(arrayItem.Title));
@@ -53,15 +55,6 @@ addeventlisteners();
     });
 
   }
-  //async function fetchWeather(LocationSelected, res){
-  // const lat = LocationSelected.Latitude;
-   //const long = LocationSelected.Longitude;
-  // const weather = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${long}&exclude=minutely,hourly,daily,alerts&units=metric&appid=04a1f24d5b23131ed6fcb89c0e53be9a`);
-  // const response = await weather.json();
- // }
 
-  //async function fetchArticles(LocationID, res){
-     // needs to use an api route
- // }
 
 });

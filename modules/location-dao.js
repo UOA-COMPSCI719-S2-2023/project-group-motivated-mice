@@ -24,7 +24,7 @@ async function retrieveAllLocations() {
 async function retrieveTopLocations() {
     const db = await dbPromise;
 
-    const allData = await db.all(SQL`select * from Location Order By Likes DESC`);
+    const allData = await db.all(SQL`select * from Location Order By Likes DESC Limit 5`);
 
     return allData;
 }
