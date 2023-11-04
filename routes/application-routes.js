@@ -39,4 +39,8 @@ router.use("/api", require("./api/api-routes.js"));
 const registerRoutes = require("./register-routes.js");
 router.use(registerRoutes);
 
+//routes
+const userAccountRoutes = require("./user-routes.js")
+router.use(userAccountRoutes);
+
 module.exports = router;

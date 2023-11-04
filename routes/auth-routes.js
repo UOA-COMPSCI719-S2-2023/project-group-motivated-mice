@@ -32,6 +32,8 @@ router.post("/login", async function (req, res) {
     // Find a matching user in the database
     const user = await accountDao.retrieveAccountWithCredentials(username, password);
 
+    // console.log(user);
+
     // if there is a matching user...
     if (user) {
         // Auth success - give that user an authToken, save the token in a cookie, and redirect to the homepage.
