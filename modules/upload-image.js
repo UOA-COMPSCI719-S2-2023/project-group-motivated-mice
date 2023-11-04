@@ -16,9 +16,6 @@ async function linkImageToArticle(images, userId, firstImage) {
     });
     const thumbnailName = firstImage.originalname;
     await postingDao.addImageToSQL(nameArray, userId, thumbnailName);
-    // if(!firstImage === undefined) {
-       
-    // }
    
 };
 
