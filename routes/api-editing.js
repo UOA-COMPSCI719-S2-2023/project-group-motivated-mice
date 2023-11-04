@@ -15,6 +15,8 @@ router.get("/editArticle", async function (req, res) {
   let articleId = req.query.postID;
   let article = await getArticle.retrieveArticle(articleId);
   res.locals.article = await article;
+  res.locals.articleID = articleId;
+  
   res.render("editing");
 });
 
