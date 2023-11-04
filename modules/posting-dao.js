@@ -94,7 +94,7 @@ async function deletePrevImages(articleID) {
     `);
 }
 
-async function updateImageSQL( namesOfImage, ArticleID, thumbnailName) {
+async function updateImageSQL(namesOfImage, ArticleID, thumbnailName) {
     const db = await dbPromise;
     //Looping the list of names of images to link image to an Article ID
     for await (const name of namesOfImage) {
@@ -103,15 +103,15 @@ async function updateImageSQL( namesOfImage, ArticleID, thumbnailName) {
     await assignLastImgAsThumbnail(ArticleID, thumbnailName);
 }
 
-async function getAllImagesOfArticle(ArticleID){
+async function getAllImagesOfArticle(ArticleID) {
     const db = await dbPromise;
-    await db.run(SQL`
-    SELECT ImageURL
+    const images = await db.all(SQL`
+    SELECT *
     FROM Images
     WHERE 
     ArticleID = ${ArticleID}
     `);
-
+    return await images;
 }
 
 module.exports = {

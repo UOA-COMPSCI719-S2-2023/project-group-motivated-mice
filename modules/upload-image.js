@@ -19,15 +19,17 @@ async function linkImageToArticle(images, userId, firstImage) {
 };
 
 async function updateImageOfArticle(images,articleID, firstImage) {
-    const nameArray = [];
-    images.forEach(element => {
-        const oldFileName = element.path;
-        const newFileName = `./public/images/${userId}/${element.originalname}`;
-        fs.renameSync(oldFileName, newFileName);
-        nameArray.push(element.originalname);
-    });
-    const thumbnailName = firstImage.originalname;
-    await postingDao.updateImageSQL(nameArray, articleID, thumbnailName);
+    const currentImages = await postingDao.getAllImagesOfArticle(articleID);
+    console.log("🚀 ~ file: upload-image.js:23 ~ updateImageOfArticle ~ currentImages:", currentImages)
+    // const nameArray = [];
+    // images.forEach(element => {
+    //     const oldFileName = element.path;
+    //     const newFileName = `./public/images/${userId}/${element.originalname}`;
+    //     fs.renameSync(oldFileName, newFileName);
+    //     nameArray.push(element.originalname);
+    // });
+    // const thumbnailName = firstImage.originalname;
+    // await postingDao.updateImageSQL(nameArray, articleID, thumbnailName);
 
 }
 
