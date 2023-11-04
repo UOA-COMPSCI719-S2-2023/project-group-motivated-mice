@@ -1,6 +1,60 @@
 const SQL = require("sql-template-strings");
 const dbPromise = require("./database.js");
 
+
+async function createPost(AuthorId, content, title) {
+    const db = await dbPromise;
+
+    await db.run(SQL`
+        INSERT INTO articles (UserID, Content, Title, Likes, PublishDate)
+        VALUES(${AuthorId}, ${content}, ${title}, 0, datetime('now'))`);
+}
+
+async function retrieveSingleArticleId(AuthorId, content) {
+    const db = await dbPromise;
+    const articleId = await db.get(SQL`SELECT ArticleID FROM Articles WHERE UserID = ${AuthorId} AND Content = ${content}`)
+    return await articleId;
+};
+
+async function retrieveArticle(articleId) {
+    const db = await dbPromise;
+    const article = await db.get(SQL`select * from Articles where ArticleID = ${articleId}`);
+    return await article;
+}
+
+//Get the top articles according to the likes from the database
+//If there is no likes yet, it will retrn all articles
+async function retrieveTopArticles() {
+    const db = await dbPromise;
+
+    let topArticles = await db.all(SQL`
+        SELECT * FROM Articles 
+        WHERE Likes > 0
+        ORDER BY Likes DESC 
+        LIMIT 10
+    `);
+
+    if (topArticles.length === 0) {
+        topArticles = await db.all(SQL`SELECT * FROM Articles LIMIT 10`);
+    }
+
+    return topArticles;
+}
+
+//not complete yet
+function addThumbnail(articleArray, thubnailArray) {
+    for (let i = 0; i < articleArray.length; i++) {
+        let j = 0;
+        let testing = articleArray[i].prototype.replace("}", "");
+        console.log("🚀 ~ file: read-article.js:16 ~ addThumbnail ~ testing:", testing)
+        let testingArray = [];
+        if (articleArray[i].ArticleID == thubnailArray[j].ArticleID) {
+            articleArray[i].ArticleID;
+        }
+        j++;
+    }
+}
+
 async function addImageToSQL(namesOfImage, userID, thumbnailName) {
     const db = await dbPromise;
     const ArticleID = await getMostRecentArticle(userID);
@@ -34,11 +88,6 @@ async function getImagesFromId(articleID) {
     return await image;
 }
 
-async function retrieveSingleArticleId(AuthorId, content) {
-    const db = await dbPromise;
-    const articleID = await db.get(SQL`SELECT ArticleID FROM Articles WHERE UserID = ${AuthorId} AND Content = ${content}`)
-    return await articleID;
-};
 async function retrieveAllArticles() {
     const db = await dbPromise;
     const articles = await db.all(SQL`select * from Articles`);
@@ -132,10 +181,18 @@ async function deleteArticle(ArticleID) {
     ArticleID = ${ArticleID}
     `);
 }
+
+
+
+
+
 module.exports = {
+    createPost,
+    retrieveSingleArticleId,
+    retrieveArticle,
+    retrieveTopArticles,
     addImageToSQL,
     getMostRecentArticle,
-    retrieveSingleArticleId,
     getImagesFromId,
     retrieveAllArticles,
     retrieveTitlesOfAllArticles,

@@ -39,21 +39,6 @@ app.use(require("./middleware/toaster-middleware.js"));
 // Setup routes
 
 app.use(require("./routes/application-routes.js"));
-const openArticleCreator = require("./routes/api-createArticle.js");
-const editArticle = require("./routes/api-editing.js");
-const gallery = require("./routes/api-gallery.js");
-const postArticleForm = require("./routes/api-posting.js");
-const articleViewer = require("./routes/api-article.js");
-const sendEdit = require("./routes/api-sendEdit.js");
-const deleteArticle = require("./routes/api-deletingArticle.js");
-
-app.use(articleViewer);
-app.use(postArticleForm);
-app.use(gallery);
-app.use(openArticleCreator);
-app.use(editArticle);
-app.use(sendEdit);
-app.use(deleteArticle);
 
 const authRouter = require("./routes/auth-routes.js");
 app.use(authRouter);
@@ -61,12 +46,14 @@ app.use(authRouter);
 const appRouter = require("./routes/application-routes.js");
 app.use(appRouter);
 
-const authorRouter = require("./routes/author-routes.js");
-app.use(authorRouter);
-
-
 const registerRouter = require("./routes/register-routes.js");
 app.use(registerRouter);
+
+const articleRoutes = require("./routes/article-routes.js");
+app.use(articleRoutes);
+
+const userAccountRoutes = require("./routes/user-routes.js")
+app.use(userAccountRoutes);
 
 
 
