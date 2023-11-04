@@ -1,7 +1,7 @@
 const SQL = require("sql-template-strings");
 const dbPromise = require("./database.js");
 
-
+const bcrypt = require("bcrypt");
 /**
  * Gets the account with the given id from the database.
  * If there is no such account, undefined will be returned.
@@ -28,11 +28,20 @@ async function retrieveAccountById(id) {
 async function retrieveAccountWithCredentials(username, password) {
     const db = await dbPromise;
 
+    //First, get the user with the given username
     const account = await db.get(SQL`
         select * from Account
-        where UserName = ${username} and HashedPassword = ${password}`);
+        where UserName = ${username}`);
 
-    return account;
+    //If we have an account, compare the input password with the hashed password
+    if (account && bcrypt.compareSync(password, account.HashedPassword)) {
+        // If the passwords match, return the account
+        return account;
+    } else {
+        // If the passwords don't match or the account doesn't exist, return null
+        return null;
+    }
+    
 }
 
 /**
@@ -86,8 +95,8 @@ async function updateAccount(user) {
 
     await db.run(SQL`
         update Account
-        set UserName = ${user.username}, HashedPassword = ${user.password}, AuthToken = ${user.authToken}
-        where AccountID = ${user.id}`);
+        set UserName = ${user.UserName}, HashedPassword = ${user.HashedPassword}, AuthToken = ${user.authToken}
+        where AccountID = ${user.AccountID}`);
 }
 
 
