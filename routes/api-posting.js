@@ -18,6 +18,7 @@ router.get("/posting", function (req, res) {
 
 //register the article in the database.
 router.post("/writeArticle",  upload.array("imageFile"), async function (req, res) {
+  //userId
   const userId = 2;
   const images = req.files;
   const firstImage = images[0];
