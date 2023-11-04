@@ -27,6 +27,7 @@ async function updateImageOfArticle(images,articleID, firstImage) {
         nameArray.push(element.originalname);
     });
     const thumbnailName = firstImage.originalname;
+    await postingDao.updateImageSQL(nameArray, articleID, thumbnailName);
 
 }
 

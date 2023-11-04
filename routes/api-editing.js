@@ -7,7 +7,7 @@ const fs = require("fs");
 const upload = require("../middleware/multer-uploader.js");
 
 const testDao = require("../modules/test-dao.js");
-const getArticle = require("../modules/read-article.js");
+const getArticle = require("../modules/make-article.js");
 const uploadImage = require("../modules/upload-image.js")
 
 //render the page with editor and all stored details loaded

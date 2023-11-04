@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const articles = require("../modules/posting-dao.js");
-const reading = require("../modules/read-article.js")
 
 router.get("/gallery", async function (req, res) {
   let articlesList = await articles.retrieveAllArticles();

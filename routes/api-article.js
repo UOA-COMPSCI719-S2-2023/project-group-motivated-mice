@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 const testDao = require("../modules/test-dao.js");
-const articleData = require("../modules/read-article.js");
-const loadImage = require("../modules/posting-dao.js")
+const articleData = require("../modules/make-article.js");
+const loadImage = require("../modules/posting-dao.js");
 
 // render an article
 router.get("/entry/:id", async function (req, res) {
