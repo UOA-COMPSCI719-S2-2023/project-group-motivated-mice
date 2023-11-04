@@ -19,9 +19,8 @@ router.post("/sendEdit",  upload.array("imageFile"), async function (req, res) {
     const content = req.body.article;
 
     let articleID = req.body.articleNumber;
-    console.log("🚀 ~ file: api-sendEdit.js:19 ~ articleID:", articleID)
     let articleOfInterest = await getArticle.retrieveArticle(articleID);
-    console.log("🚀 ~ file: api-sendEdit.js:23 ~ articleOfInterest:", articleOfInterest)
+
     // const images = req.files;
     // const firstImage = images[0];
     // if (!(typeof firstImage === "undefined")) {

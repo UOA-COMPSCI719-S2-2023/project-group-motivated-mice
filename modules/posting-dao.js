@@ -75,7 +75,7 @@ async function retrieveAllThumbnails(articleId) {
     return thumbnails;
 }
 
-async function getUserByArticle(articleId){
+async function getUserByArticle(articleId) {
     const db = await dbPromise;
     const userId = await db.get(SQL`
     SELECT UserID
@@ -83,6 +83,24 @@ async function getUserByArticle(articleId){
     WHERE ArticleID = ${articleId}
     `);
     return userId;
+}
+
+async function deletePrevImages(articleId) {
+    const db = await dbPromise;
+    await db.run(SQL`
+    DELETE FROM Images
+    WHERE 
+    ArticleID = ${articleId}
+    `);
+}
+
+async function updateImageSQL(articleId, namesOfImage, thumbnailName) {
+    const db = await dbPromise;
+    //Looping the list of names of images to link image to an Article ID
+    for await (const name of namesOfImage) {
+        db.run(SQL``);
+    }
+    await assignLastImgAsThumbnail(ArticleID, thumbnailName);
 }
 
 module.exports = {
@@ -95,5 +113,6 @@ module.exports = {
     assignLastImgAsThumbnail,
     retrieveAllThumbnails,
     retrieveArticlesByUser,
-    getUserByArticle
+    getUserByArticle,
+    deletePrevImages
 };

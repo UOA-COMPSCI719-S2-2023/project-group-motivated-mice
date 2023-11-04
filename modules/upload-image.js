@@ -19,7 +19,15 @@ async function linkImageToArticle(images, userId, firstImage) {
 };
 
 async function updateImageOfArticle(images,articleID, firstImage) {
-    
+    const nameArray = [];
+    images.forEach(element => {
+        const oldFileName = element.path;
+        const newFileName = `./public/images/${userId}/${element.originalname}`;
+        fs.renameSync(oldFileName, newFileName);
+        nameArray.push(element.originalname);
+    });
+    const thumbnailName = firstImage.originalname;
+
 }
 
 async function makeUserFolder(userID) {
@@ -57,5 +65,6 @@ async function makeUserFolder(userID) {
 // }
 
 module.exports = {
-    linkImageToArticle
+    linkImageToArticle,
+    updateImageOfArticle
 };
