@@ -12,13 +12,11 @@ router.get("/entry/:id", async function (req, res) {
     res.locals.article = article;
     res.locals.testing = "testing"
     res.locals.articleEntry = true;
+    res.locals.articleId = submittedId;
     const userID = await loadImage.getUserByArticle(submittedId);
-    console.log("🚀 ~ file: api-article.js:16 ~ userID:", userID)
     const images = await loadImage.getImagesFromId(submittedId);
-    console.log("🚀 ~ file: api-article.js:18 ~ images:", images)
     res.locals.images = images;
     res.locals.author = userID;
-    console.log( res.locals.images);
     res.render("article");
 
 });
