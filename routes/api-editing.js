@@ -7,12 +7,14 @@ const fs = require("fs");
 const upload = require("../middleware/multer-uploader.js");
 
 const testDao = require("../modules/test-dao.js");
-const postArticle = require("../modules/make-article.js");
+const getArticle = require("../modules/read-article.js");
 const uploadImage = require("../modules/upload-image.js")
 
-router.get("/editArticle/:id", function (req, res) {
-  let articleId = req.params['id'];
-
+//render the page with editor and all stored details loaded
+router.get("/editArticle", async function (req, res) {
+  let articleId = req.query.postID;
+  let article = await getArticle.retrieveArticle(articleId);
+  res.locals.article = await article;
   res.render("editing");
 });
 
