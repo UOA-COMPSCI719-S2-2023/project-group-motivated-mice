@@ -14,10 +14,11 @@ async function linkImageToArticle(images, userId, firstImage) {
         fs.renameSync(oldFileName, newFileName);
         nameArray.push(element.originalname);
     });
-    if(!firstImage == undefined) {
-        const thumbnailName = firstImage.originalname;
-        await postingDao.addImageToSQL(nameArray, userId, thumbnailName);
-    }
+    const thumbnailName = firstImage.originalname;
+    await postingDao.addImageToSQL(nameArray, userId, thumbnailName);
+    // if(!firstImage === undefined) {
+       
+    // }
    
 };
 
