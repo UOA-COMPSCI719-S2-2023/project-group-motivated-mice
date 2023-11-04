@@ -24,6 +24,7 @@ header {
     color: #323643;
     text-align: center;
     padding: 10px;
+    grid-area: header;
 }
 
 /* Style for the navigation bar */
@@ -48,7 +49,7 @@ header {
     padding: 20px;
 }
 
-#articles-list {
+#top-articles-list {
     list-style: none;
     padding: 0;
     display: grid;
@@ -62,17 +63,17 @@ header {
     color: #323643;
 }
 
-#articles-list li {
+#top-articles-listli {
     padding: 20px;
     border: 1px solid #f7f7f7;
     text-align: center;
 }
 
-#articles-list h3 {
+#top-articles-list {
     margin: 0;
 }
 
-#articles-list p {
+#top-articles-listt p {
     margin: 10px;
 
 }
@@ -107,6 +108,84 @@ form {
     padding-right: 100px;
     padding-bottom: 6px;
     padding-top: 6px;
+}
+#user-page {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+        "header header"
+        "top-articles user"
+        "top-articles user-articles";
+    gap: 20px;
+    /* Add gap for spacing */
+    padding: 20px;
+}
+
+#user {
+    grid-area: user;
+}
+
+#user-articles {
+    grid-area: user-articles;
+}
+
+#top-articles {
+    grid-area: top-articles;
+    margin-right: 20px;
+}
+
+/* Additional styling for user info */
+.avatar {
+    max-width: 100%;
+    height: auto;
+}
+
+
+#location-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "header header"
+        "top-locations all-locations"
+        "selected-location selected-location";
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+#top-locations {
+    grid-area: top-locations;
+    list-style: none;
+    padding: 0;
+    background-color: #e7e6e1;
+}
+
+#all-locations {
+    grid-area: all-locations;
+    list-style: none;
+    padding: 0;
+    background-color: #e7e6e1;
+}
+
+#selected-locations {
+    grid-area: selected-locations;
+}
+
+#articles-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "header header"
+        "all-articles my-articles";
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+.all-articles-list {
+    grid-area: all-articles;
+}
+
+.my-articles {
+    grid-area: my-articles;
 }
 
 @media (min-width: 600px) {
