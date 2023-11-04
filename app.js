@@ -43,6 +43,7 @@ const gallery = require("./routes/api-gallery.js");
 const postArticleForm = require("./routes/api-posting.js");
 const articleViewer = require("./routes/api-article.js");
 const sendEdit = require("./routes/api-sendEdit.js");
+const deleteArticle = require("./routes/api-deletingArticle.js");
 
 app.use(articleViewer);
 app.use(postArticleForm);
@@ -50,6 +51,7 @@ app.use(gallery);
 app.use(openArticleCreator);
 app.use(editArticle);
 app.use(sendEdit);
+app.use(deleteArticle);
 
 // Start the server running.
 app.listen(port, function () {
