@@ -1,53 +1,116 @@
+/* Reset some default margin and padding for a cleaner layout */
+* {
+    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Oxygen', sans-serif;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-family: 'Saira Condensed', sans-serif;
+}
+
 body {
-    background-color: #f2f2f2;
+    background-image: url('/images/background.jpg');
+    background-size: auto;
+}
+
+body,
+h1,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style for the title at the top of the page */
+header {
+    background-color: #d5eeff;
+    color: #323643;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Style for the navigation bar */
+#nav-bar {
+    list-style-type: none;
     display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
+    padding: 20px;
+}
+
+#nav-bar ul {
+    list-style-type: none;
+}
+
+
+#container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#articles-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr, 1fr, 1fr;
+    gap: 20px;
+    text-align: center;
+    padding: 20px;
+    background-color: #d5eeff;
+    border-radius: 10px;
+    margin: 20px;
+    color: #323643;
+}
+
+#articles-list li {
+    padding: 20px;
+    border: 1px solid #f7f7f7;
+    text-align: center;
+}
+
+#articles-list h3 {
     margin: 0;
 }
 
-#container {
-    max-width: 400px;
+#articles-list p {
+    margin: 10px;
+
+}
+
+#about {
+    text-align: center;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #d5eeff;
+    border-radius: 10px;
+    margin: 20px;
+    color: #323643;
+    width: 450px;
+    margin: 20px auto;
 }
 
-/* Style the login form elements */
-.flex-col {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
+form {
+    text-align: center;
+    padding: 20px;
+    background-color: #d5eeff;
+    border-radius: 10px;
+    margin: 20px auto;
+    color: #323643;
+    width: 450px;
 }
 
-label {
+
+.info {
     font-weight: bold;
     margin-bottom: 5px;
+    text-align: left;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 6px;
+    padding-top: 6px;
 }
 
-input[type="text"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-top: 3px;
+@media (min-width: 600px) {
+    #articles-list {
+        grid-template-columns: 1fr;
+    }
 }
-
-/* Style the submit button */
-button {
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-

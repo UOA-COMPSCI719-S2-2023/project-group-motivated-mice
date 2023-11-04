@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oxygen&family=PT+Sans+Narrow&family=Saira+Condensed:wght@300&display=swap"
+    rel="stylesheet">
 
 <head>
     <meta charset="UTF-8">
@@ -11,24 +17,6 @@
 </head>
 
 <body>
-    <div class="topnav">
-     <a class="active" href="/">Home</a>
-     <a href="./entry">Articles - to be added</a>
-     <a href="./Authors">Authors - to be added</a>
-    <a href="./location">Locations</a>
-
-    {{#if loggedIn}} 
-    <a href="./logout">Logout</a>
-     <a href="./my-profile">View Your Profile - to be added</a>
-
-    {{else}}
-     <a href="./login">Login</a>
-     <a href="./create-account">Create an account</a>
-
-    {{/if}}
-
-</div>
-
     {{{body}}}
 </body>
 
