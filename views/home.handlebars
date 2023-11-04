@@ -1,19 +1,5 @@
-
-<h1>My stuff:</h1>
-{{#if toastMessage}}
-<p>{{toastMessage}}</p>
-{{/if}}
-<ul>
-    {{#each allTestData}}
-    <li>{{this.stuff}}</li>
-    {{/each}}
-</ul>
-
-<h1>A dragon:</h1>
-<img src="./images/Dragonite.png">
-    <a href="./posting">Post an article</a>
-    <a href="./gallery">View articles</a>
-
+{{!-- Home page is the first page you navigate to, 
+where you can see a list of the top 10 articles and either login or register an account --}}
 <!DOCTYPE html>
 <html>
 
@@ -26,6 +12,7 @@
 <body>
     <header>
         <h1>Travel Blog</h1>
+        {{!-- navigation bar which changes whether you are logged in or not --}}
         <nav id="nav-bar">
             {{#if loggedIn}}
             <a href="./logout">Logout</a>
@@ -39,18 +26,18 @@
             <a class="active" href="/">Home</a>
             <a href="./create-account">Create an account</a>
             <a href="./login">Login</a>
-
-
             {{/if}}
         </nav>
     </header>
+
     <main id="container">
+        {{!-- Info about the travel blog --}}
         <div id="about">
             <h1>About: </h1>
             <p>Blurb about the travel blog</p>
         </div>
-
-        <div id="articles-list">
+        {{!-- List of top 10 articles --}}
+        <div id="top-articles-list">
             <h1>Top Articles</h1>
         </div>
     </main>

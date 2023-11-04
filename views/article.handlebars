@@ -1,3 +1,24 @@
+
+{{!-- this HTML displays articles if article is there --}}
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{pageTitle}}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<header>
+    <h1>Travel Blog</h1>
+    <nav id="nav-bar">
+        <a href="./logout">Logout</a>
+        <a href="./my-profile">View Your Profile - to be added</a>
+        <a class="active" href="/">Home</a>
+        <a href="./entry">Articles - to be added</a>
+        <a href="./Authors">Authors - to be added</a>
+        <a href="./location">Locations</a>
+    </nav>
+</header>
+
 {{#if articleEntry}}
 <script src="/imageInArticle.js"></script>
 <h1 id="title">
@@ -19,6 +40,8 @@
     <a href="" id="author_info" data-author={{article.UserID}}>
         author's page
     </a>
+
+    {{!-- edited the article --}}
     <form id= "theEditForm" action="/editArticle">
         <div id="form-edit-form">
             <input type="hidden" id="postId" name="postID" value = {{articleId}}>
@@ -26,7 +49,7 @@
         </div>
     </form>
 
-    {{!-- <a href="">Delete the article</a> --}}
+    {{!-- Delete the article --}}
 
     <form id= "theDeleteForm" action="/deleteArticle">
         <div id="form-edit-form">

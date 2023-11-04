@@ -1,8 +1,11 @@
+{{!-- this HTML allows users to edit and submit articles --}}
+
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 <script src="./custom-quill.js"></script>
 <script src="./preview.js"></script>
 
+{{!-- form gets the article and displays allowing to edit the selected article --}}
 <form id="form" action="./sendEdit" enctype="multipart/form-data" multiple='multiple' method="POST">
     <div class="form-group">
 

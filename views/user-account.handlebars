@@ -1,23 +1,45 @@
-<div>
-    <img src="{{avatar.ImageFilePath}}" alt="User Avatar" class="avatar">
-    <p>User Name:{{user.UserName}}</p>
-    <p>About:{{user.About}}</p>
-</div>
+{{!-- displays user info --}}
 
-<section>
-    <h3>Articles written by {{user.UserName}}:</h3>
-    <ul>
-        {{#each articles}}
-        <li><a href="/articles/{{this.ArticleID}}">{{this.Title}}</a></li>
-        {{/each}}
-    </ul>
-</section>
+<head>
+    <meta charset="UTF-8">
+    <title>{{pageTitle}}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
 
-<section>
-    <h3>Top Articles</h3>
-    <ul>
-        {{#each topArticles}}
-        <li><a href="/articles/{{this.ArticleID}}">{{this.Title}}</a></li>
-        {{/each}}
-    </ul>
-</section>
+<header>
+    <h1>Travel Blog</h1>
+    <nav id="nav-bar">
+        <a href="./logout">Logout</a>
+        <a href="./my-profile">View Your Profile - to be added</a>
+        <a class="active" href="/">Home</a>
+        <a href="./entry">Articles - to be added</a>
+        <a href="./Authors">Authors - to be added</a>
+        <a href="./location">Locations</a>
+    </nav>
+</header>
+
+<body id="user-page">
+    <div id="user">
+        <img src="{{avatar.ImageFilePath}}" alt="User Avatar" class="avatar">
+        <p>User Name:{{user.UserName}}</p>
+        <p>About:{{user.About}}</p>
+    </div>
+
+    <div id="user-articles">
+        <h3>Articles written by {{user.UserName}}:</h3>
+        <ul>
+            {{#each articles}}
+            <li><a href="/articles/{{this.ArticleID}}">{{this.Title}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+
+    <div id="top-articles">
+        <h3>Top Articles</h3>
+        <ul>
+            {{#each topArticles}}
+            <li><a href="/articles/{{this.ArticleID}}">{{this.Title}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+</body>

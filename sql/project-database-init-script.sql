@@ -83,16 +83,6 @@ create table Comments (
 alter table Articles
 ADD Comments INT DEFAULT 0; -- Add a column to track the number of comments on each article
 
-
---for testing 
-insert into Account (UserName, FirstName, LastName, EmailAddress, DateOfBirth, About, Likes) values
-('pokemon', 'Jane', 'Doe', 'jane.doe@gmail.com', date('1980-10-05'), 'hello world', 0),
-('digimon', 'John', 'Smith', 'john.smith@gmail.com', date('1966-02-05'), 'Windows Me is the best Windows', 0);
-
-insert into Articles (UserID, PublishDate, Likes, Title, Content) values 
-(1,date('2023-10-25'), '0', 'hello', '<p>hello world<p>'),
-(2,date('2023-10-15'), '0', 'hello', '<p>How are you<p>');
-
 -- creates the Location table
 create table Location (
     LocationID int primary key,
@@ -102,6 +92,16 @@ create table Location (
     Latitude VARCHAR(255),
     Longitude VARCHAR(255)
 );
+
+--for testing 
+insert into Account (UserName, FirstName, LastName, EmailAddress, DateOfBirth, About, Likes, HashedPassword) values
+('pokemon', 'Jane', 'Doe', 'jane.doe@gmail.com', date('1980-10-05'), 'hello world', 0, user1),
+('digimon', 'John', 'Smith', 'john.smith@gmail.com', date('1966-02-05'), 'Windows Me is the best Windows', 0, user2);
+
+insert into Articles (UserID, PublishDate, Likes, Title, Content) values 
+(1,date('2023-10-25'), '0', 'hello', '<p>hello world<p>'),
+(2,date('2023-10-15'), '0', 'hello', '<p>How are you<p>');
+
 
 -- Adds values into the location table
 

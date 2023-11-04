@@ -1,8 +1,27 @@
+{{!-- display for posting new article --}}
+
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 <script src="./custom-quill.js"></script>
 <script src="./preview.js"></script>
 
+<head>
+    <meta charset="UTF-8">
+    <title>{{pageTitle}}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<header>
+    <h1>Travel Blog</h1>
+    <nav id="nav-bar">
+        <a href="./logout">Logout</a>
+        <a href="./my-profile">View Your Profile - to be added</a>
+        <a class="active" href="/">Home</a>
+        <a href="./entry">Articles - to be added</a>
+        <a href="./Authors">Authors - to be added</a>
+        <a href="./location">Locations</a>
+    </nav>
+</header>
 
 <form id="form" action="./writeArticle" enctype="multipart/form-data" multiple='multiple' method="POST">
     <div class="form-group">

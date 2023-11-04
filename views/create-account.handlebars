@@ -1,3 +1,4 @@
+{{!-- This is where you can register an account for the blog --}}
 <head>
     <meta charset="UTF-8">
     <title>{{pageTitle}}</title>
@@ -6,6 +7,7 @@
 
 <header>
     <h1>Travel Blog</h1>
+    {{!-- Navigation bar for when you first create an account --}}
     <nav id="nav-bar">
         <a href="/">Home</a>
         <a href="/create-account">Create an account</a>
@@ -15,7 +17,7 @@
 
 <body>
     <div id="container">
-
+            {{!-- form to input info to register for account --}}
         <form action="/create-account" method="POST" onsubmit="return validatePasswords();">
             <h1>Create an Account</h1>
             <div class="info">

@@ -1,26 +1,49 @@
+{{!-- displays a list of articles --}}
 <script src="./galleryMenu.js"></script>
 
-<div class="container">
-    <h1>ARTICLE INDEX / NAVIGATION</h1>
-    <div class="article-list">
-        {{#each articles }}
-        <button data-article="{{ArticleID}}">
-        <a href="./entry/{{ArticleID}}">{{Title}}<br> 
-        <p>{{PublishDate}}</p>
-        </a>
-        </button>
-        {{/each}}
-    </div>
-    <br>
-    <h2>Your articles</h2>
-    <div class="my-articles">
-        {{#each userArticles}}
-        <button data-article="{{ArticleID}}">
-        <a href="./entry/{{ArticleID}}">{{Title}}<br> 
-        <p>{{PublishDate}}</p>
-        </a>
-        </button>
-        {{/each}}
-    </div>
+<head>
+    <meta charset="UTF-8">
+    <title>{{pageTitle}}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
 
-</div>
+<header>
+    <h1>Travel Blog</h1>
+    <nav id="nav-bar">
+        <a href="./logout">Logout</a>
+        <a href="./my-profile">View Your Profile - to be added</a>
+        <a class="active" href="/">Home</a>
+        <a href="./entry">Articles - to be added</a>
+        <a href="./Authors">Authors - to be added</a>
+        <a href="./location">Locations</a>
+    </nav>
+</header>
+
+<body id="articles-list">
+    <div class="container">
+
+        <div class="all-article-list">
+            <h1>ARTICLE INDEX / NAVIGATION</h1>
+            {{#each articles }}
+            <button data-article="{{ArticleID}}">
+                <a href="./entry/{{ArticleID}}">{{Title}}<br>
+                    <p>{{PublishDate}}</p>
+                </a>
+            </button>
+            {{/each}}
+        </div>
+        <br>
+
+        <div class="my-articles">
+            <h2>Your articles</h2>
+            {{#each userArticles}}
+            <button data-article="{{ArticleID}}">
+                <a href="./entry/{{ArticleID}}">{{Title}}<br>
+                    <p>{{PublishDate}}</p>
+                </a>
+            </button>
+            {{/each}}
+        </div>
+
+    </div>
+</body>

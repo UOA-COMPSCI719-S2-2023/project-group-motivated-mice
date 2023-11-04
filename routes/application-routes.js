@@ -6,11 +6,6 @@ const accountDAO = require("../modules/account-dao.js");
 const locationDAO = require("../modules/location-dao.js");
 
 
-
-router.get("/", async function(req, res) {
-
-
-
 router.get("/",async function(req, res) {
     if(req.cookies.authToken){
     res.locals.loggedIn = "true";
@@ -44,7 +39,7 @@ const registerRoutes = require("./register-routes.js");
 router.use(registerRoutes);
 
 //routes
-const userAccountRoutes = require("./user-routes.js")
+const userAccountRoutes = require("./user-routes.js");
 router.use(userAccountRoutes);
 
 module.exports = router;

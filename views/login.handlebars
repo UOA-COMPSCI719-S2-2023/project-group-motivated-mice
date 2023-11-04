@@ -1,3 +1,4 @@
+{{!-- this is the login page to login into account --}}
 <head>
     <meta charset="UTF-8">
     <title>{{pageTitle}}</title>
@@ -6,6 +7,7 @@
 
 <header>
     <h1>Travel Blog</h1>
+    {{!-- navigation bar for when you first login --}}
     <nav id="nav-bar">
         <a href="/">Home</a>
         <a href="/create-account">Create an account</a>
@@ -20,7 +22,7 @@
         <p>{{toastMessage}}</p>
         {{/if}}
 
-
+        {{!-- form to input login info --}}
         <form action="/login" method="POST">
             <h1>Login to your account</h1>
 
