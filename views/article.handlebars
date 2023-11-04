@@ -1,6 +1,6 @@
 {{#if articleEntry}}
 <script src="/imageInArticle.js"></script>
-<h1 data-article>
+<h1 id="title">
     {{article.Title}}
 </h1>
 <h3> By {{article.UserID}}</h3>
@@ -21,7 +21,7 @@
     </a>
     <form id= "theEditForm" action="./editArticle">
         <div id="form-edit-form">
-            <input type="hidden" id="postId" name="postId" />
+            <input type="hidden" id="postId" name="postId" value = {{articleId}}>
             <button type="submit">Edit the article!</button>
         </div>
     </form>

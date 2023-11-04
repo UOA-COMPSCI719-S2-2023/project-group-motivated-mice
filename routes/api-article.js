@@ -9,10 +9,10 @@ const loadImage = require("../modules/posting-dao.js")
 router.get("/entry/:id", async function (req, res) {
     let submittedId = req.params[`id`];
     const article = await articleData.retrieveArticle(submittedId);
-    res.locals.article = article;
-    res.locals.testing = "testing"
-    res.locals.articleEntry = true;
     res.locals.articleId = submittedId;
+    res.locals.article = article;
+    res.locals.articleEntry = true;
+    
     const userID = await loadImage.getUserByArticle(submittedId);
     const images = await loadImage.getImagesFromId(submittedId);
     res.locals.images = images;
