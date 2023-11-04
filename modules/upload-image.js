@@ -1,7 +1,7 @@
 // const SQL = require("sql-template-strings");
 // const dbPromise = require("./database.js");
 const fs = require("fs");
-const jimp = require("jimp");
+//const jimp = require("jimp");
 const postingDao = require("./posting-dao.js");
 
 async function linkImageToArticle(images, userId, firstImage) {

@@ -7,7 +7,6 @@ const locationDAO = require("../modules/location-dao.js");
 
 
 
-router.get("/", async function(req, res) {
 
 
 
