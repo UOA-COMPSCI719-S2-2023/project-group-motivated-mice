@@ -12,7 +12,7 @@ const upload = require("../middleware/multer-uploader.js");
 
 
 // render an article
-router.get("/entry/:id", async function (req, res) {
+router.get("/entry", async function (req, res) {
     let submittedId = req.params[`id`];
     const article = await articleDAO.retrieveArticle(submittedId);
     res.locals.articleId = submittedId;
