@@ -1,6 +1,6 @@
 {{#if articleEntry}}
 <script src="/imageInArticle.js"></script>
-<h1>
+<h1 data-article>
     {{article.Title}}
 </h1>
 <h3> By {{article.UserID}}</h3>
@@ -11,15 +11,22 @@
 <div id="content">
     {{{article.Content}}}
 </div>
-<div data-article={{author.UserID}} id="images">
+<div data-author={{author.UserID}} id="images">
 
     {{#each images}}
-    <img class = "images" data-article={{this.ImageURL}}>
+    <img class="images" data-imageURL={{this.ImageURL}}>
     {{/each }}
     <a href="" id="author_info" data-author={{article.UserID}}>
         author's page
     </a>
-    <a href="./editArticle">Edit the article</a>
+    <form id= "theEditForm" action="./editArticle">
+        <div id="form-edit-form">
+            <input type="hidden" id="postId" name="postId" />
+            <button type="submit">Edit the article!</button>
+        </div>
+    </form>
+
+    {{!-- <a href="./editArticle">Edit the article</a> --}}
     <a href="">Delete the article</a>
     <a href="/gallery">Back to Gallery</a>
 
