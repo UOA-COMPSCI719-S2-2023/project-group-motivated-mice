@@ -1,3 +1,4 @@
+
 <h1>My stuff:</h1>
 {{#if toastMessage}}
 <p>{{toastMessage}}</p>
@@ -12,4 +13,48 @@
 <img src="./images/Dragonite.png">
     <a href="./posting">Post an article</a>
     <a href="./gallery">View articles</a>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{pageTitle}}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Travel Blog</h1>
+        <nav id="nav-bar">
+            {{#if loggedIn}}
+            <a href="./logout">Logout</a>
+            <a href="./my-profile">View Your Profile - to be added</a>
+            <a class="active" href="/">Home</a>
+            <a href="./entry">Articles - to be added</a>
+            <a href="./Authors">Authors - to be added</a>
+            <a href="./location">Locations</a>
+
+            {{else}}
+            <a class="active" href="/">Home</a>
+            <a href="./create-account">Create an account</a>
+            <a href="./login">Login</a>
+
+
+            {{/if}}
+        </nav>
+    </header>
+    <main id="container">
+        <div id="about">
+            <h1>About: </h1>
+            <p>Blurb about the travel blog</p>
+        </div>
+
+        <div id="articles-list">
+            <h1>Top Articles</h1>
+        </div>
+    </main>
+</body>
+
+</html>
 
