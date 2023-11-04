@@ -15,7 +15,7 @@ router.get("/",async function(req, res) {
     if(req.cookies.authToken){
     res.locals.loggedIn = "true";
     res.locals.title = "Verified user!";
-    res.locals.allTestData = await testDao.retrieveAllTestData();
+    // res.locals.allTestData = await testDao.retrieveAllTestData();
     }
     else{
     res.locals.title = "NOT VERIFIED";

@@ -109,6 +109,13 @@ form {
     padding-top: 6px;
 }
 
+.avatar {
+    width: 80px;  
+    height: 80px;
+    object-fit: cover; /* this will make sure to cover the area without stretching the image */
+    border-radius: 50%; /* makes the image round */
+  }
+
 @media (min-width: 600px) {
     #articles-list {
         grid-template-columns: 1fr;
