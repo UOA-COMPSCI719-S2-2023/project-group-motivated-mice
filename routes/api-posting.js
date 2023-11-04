@@ -11,10 +11,7 @@ const testDao = require("../modules/test-dao.js");
 const postArticle = require("../modules/make-article.js");
 const uploadImage = require("../modules/upload-image.js")
 
-router.get("/posting", function (req, res) {
 
-  res.render("posting");
-});
 
 //register the article in the database.
 router.post("/writeArticle",  upload.array("imageFile"), async function (req, res) {
@@ -29,14 +26,12 @@ router.post("/writeArticle",  upload.array("imageFile"), async function (req, re
   // await uploadImage.linkImageToArticle(imageData, userId);
   const content = req.body.article;
   await postArticle.createPost(userId, content, title);
-  res.locals.title = title;
-  res.locals.articleEntry = true;
-  res.locals.content = content;
+ 
 
-  const message = `Content Uploaded!`;
+  const message = `Article Uploaded!`;
 
   res.setToastMessage(message);
-  res.render("article");
+  res.redirect("/");
 });
 
 
