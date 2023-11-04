@@ -18,7 +18,6 @@ router.post("/writeArticle",  upload.array("imageFile"), async function (req, re
   const userId = 2;
   const images = req.files;
   const firstImage = images[0];
-  console.log("🚀 ~ file: api-posting.js:21 ~ firstImage:", firstImage)
   if (!(typeof firstImage === "undefined")) {
     uploadImage.linkImageToArticle(images, userId, firstImage);
   }
