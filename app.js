@@ -37,12 +37,14 @@ app.use(require("./middleware/toaster-middleware.js"));
 
 // Setup routes
 app.use(require("./routes/application-routes.js"));
-const articleRouter = require("./routes/api-posting.js");
+const postArticleForm = require("./routes/api-posting.js");
 const articleViewer = require("./routes/api-article.js");
-const gallery = require("./routes/api-gallery.js")
+const gallery = require("./routes/api-gallery.js");
+const openArticleCreator = require("./routes/api-createArticle.js");
 app.use(articleViewer);
-app.use(articleRouter);
+app.use(postArticleForm);
 app.use(gallery);
+app.use(openArticleCreator);
 
 // Start the server running.
 app.listen(port, function () {
