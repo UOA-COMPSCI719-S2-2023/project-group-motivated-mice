@@ -1,4 +1,7 @@
 <h1>My stuff:</h1>
+{{#if toastMessage}}
+<p>{{toastMessage}}</p>
+{{/if}}
 <ul>
     {{#each allTestData}}
     <li>{{this.stuff}}</li>
