@@ -32,6 +32,16 @@ router.get("/location", async function(req, res) {
     res.locals.allLocations = await locationDAO.retrieveAllLocations();
     res.locals.topLocations = await locationDAO.retrieveTopLocations();
     res.render("location");
+
+});
+
+router.get("/author", async function (req, res) {
+
+  res.locals.title = "Authors";
+  res.locals.allAuthors = await accountDAO.retrieveAllAccounts();
+  res.locals.topAuthors = await accountDAO.retrieveTopAccounts();
+  res.render("view-author");
+
 });
 
 router.get("/gallery", async function (req, res) {

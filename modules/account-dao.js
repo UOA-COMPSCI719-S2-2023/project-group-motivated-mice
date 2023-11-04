@@ -95,6 +95,14 @@ async function retrieveAllAccounts() {
 
     return accounts;
 }
+
+async function retrieveTopAccounts() {
+    const db = await dbPromise;
+
+    const accounts = await db.all(SQL`select * from Account Order By Likes DESC Limit 5`);
+
+    return accounts;
+}
 /**
  * updates the user with an auth token.
  */
@@ -180,6 +188,7 @@ module.exports = {
     retrieveUserWithAuthToken,
     retrieveAccountByUsername,
     retrieveAllAccounts,
+    retrieveTopAccounts,
     updateAccount,
     deleteAccount,
     retrieveAvatarById,

@@ -1,22 +1,30 @@
 
-<head>
-    <title>User Profile</title>
-</head>
+<script src="./author.js"></script>
 
-<body>
-    <h1>User Profile</h1>
-    <p>{{user.avatar}}</p>
-    <p>Username: {{user.username}}</p>
-    <p>First Name: {{user.firstName}}</p>
-    <p>Last Name: {{user.lastName}}</p>
+<div> 
+<h3>Top Authors</h3>
+<ul id="topauthorlist">
+    {{#each topAuthors}}
+    <li id="{{this.AccountID}}" class="authorlistitems">{{this.FirstName}} {{this.LastName}}</li>
+    {{/each}}
+</ul>
+
+<h3>All Locations</h3>
+ <ul id="allauthorlist">
+    {{#each allAuthors}}
+    <li id="{{this.AccountID}}" class="authorlistitems">{{this.FirstName}} {{this.LastName}}</li>
+    {{/each}}
+</ul>
+
+</div>
+    <div id=" selected author info">  
+    <h3 id="selectedName">About our Authors</h3>
+    <p id="selectedDescription">Introducing the authors behind our dynamic travel blog - a collective of seasoned explorers, each with a distinctive and captivating writing style. From immersive storytelling to insightful travel tips, their wealth of experience shines through every post. Their unique perspectives resonate with our readers, evident in the enthusiastic upvotes received on their articles.<br>But we believe that every adventurer has a story to tell. That's why we invite you to join our community. Create an account, share your own travel tales, and let your voice be heard. Whether you're a globetrotting veteran or a first-time explorer, your journey deserves to be celebrated on our platform. Join us in weaving a tapestry of global experiences, one story at a time.<br>Click on a author from the list to find out more about their story.</p>
+    <p id="likes"></p>
     
-    <h3>Articles:</h3>
-    <ul>
-        {{#each articles}}
-        <li>
-            <p>{{title}}</p>
-            <p>{{content}}</p>
-        </li>
-        {{/each}}
-    </ul>
-</body>
+
+    <div id = "Articles">
+    <h3 id="articlesbyauthortitle"></h3>
+     <ul id="articlesbyauthorlist">
+    </ul> 
+</div>

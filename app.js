@@ -46,9 +46,6 @@ app.use(authRouter);
 const appRouter = require("./routes/application-routes.js");
 app.use(appRouter);
 
-const authorRouter = require("./routes/author-routes.js");
-app.use(authorRouter);
-
 const registerRouter = require("./routes/register-routes.js");
 app.use(registerRouter);
 

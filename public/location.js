@@ -46,7 +46,7 @@ addeventlisteners();
     cloudcover.innerHTML = "Cloud Cover: "+weather.current.clouds+" %";
     
     articlesforlocationtitle.innerHTML = "Articles about "+ LocationSelected.Name;
-
+    articlesbylocationlist.innerHTML = null;
     articles.forEach(function(arrayItem){
     var li = document.createElement("li");
     li.appendChild(document.createTextNode(arrayItem.Title));
