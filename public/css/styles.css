@@ -1,4 +1,4 @@
-/* Reset some default margin and padding for a cleaner layout */
+/* Css for login, register and home pages*/
 * {
     font-family: 'Bebas Neue', sans-serif;
     font-family: 'Oxygen', sans-serif;
@@ -48,6 +48,7 @@ header {
     padding: 20px;
 }
 
+/* style for home page top articles */
 #articles-list {
     list-style: none;
     padding: 0;
@@ -77,6 +78,8 @@ header {
 
 }
 
+/* css for home page about  */
+
 #about {
     text-align: center;
     padding: 20px;
@@ -88,6 +91,7 @@ header {
     margin: 20px auto;
 }
 
+/* css for login and register forms */
 form {
     text-align: center;
     padding: 20px;
@@ -109,8 +113,181 @@ form {
     padding-top: 6px;
 }
 
+/* css for user account page */
+#grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+        "navbar"
+        "top-articles user-details";
+    grid-template-rows: auto auto;
+    gap: 20px;
+}
+
+#navbar {
+    grid-area: navbar;
+}
+
+#top-articles-user {
+    grid-area: top-articles;
+}
+
+.user-details {
+    grid-area: user-details;
+    display: grid;
+    grid-template-areas:
+        "avatar user-info"
+        "user-articles";
+    grid-template-rows: auto auto;
+    gap: 10px;
+}
+
+#user-avatar {
+    grid-area: avatar;
+}
+
+#user-info {
+    grid-area: user-info;
+}
+
+#user-articles {
+    grid-area: user-articles;
+}
+
+/* css for authors page */
+#container-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+        "navbar navbar"
+        "authors selected-author";
+    grid-template-rows: auto auto;
+    gap: 20px;
+}
+
+#navbar {
+    grid-area: navbar;
+}
+
+#authors {
+    grid-area: authors;
+}
+
+#selected-author {
+    grid-area: selected-author;
+}
+
+/* css for locations page */
+#location-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+        "navbar navbar"
+        "locations selected-location";
+    grid-template-rows: auto;
+    gap: 20px;
+}
+
+#navbar {
+    grid-area: navbar;
+}
+
+#locations {
+    grid-area: locations;
+}
+
+#selected-location {
+    grid-area: selected-location;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "selected-info"
+        "weather"
+        "Articles-location";
+    background-color: #d5eeff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#selected-info {
+    grid-area: selected-info;
+    margin-bottom: 20px;
+}
+
+#weather {
+    grid-area: weather;
+    margin-bottom: 20px;
+}
+
+#Articles-location {
+    grid-area: Articles-location;
+}
+
+/* css for articles page */
+#articles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "nabar"
+        "article-list"
+        "my-articles";
+    gap: 20px;
+}
+
+#navbar {
+    grid-area: navbar;
+}
+.article-list {
+    grid-area: article-list;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px; 
+}
+
+.my-articles {
+    grid-area: my-articles;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px; 
+}
+
+/* css for smaller screens */
 @media (min-width: 600px) {
+
+    /* css for home page articles */
     #articles-list {
         grid-template-columns: 1fr;
+    }
+
+    /* css for user account page */
+    #grid-container {
+        grid-template-areas:
+            "navbar"
+            "user-details"
+            "top-articles";
+        grid-template-rows: auto auto auto;
+    }
+
+    /* css for author page */
+    #grid-container {
+        grid-template-areas:
+            "navbar"
+            "selected-author"
+            "authors";
+        grid-template-rows: auto auto auto;
+    }
+
+    /* css for locations grid */
+    #location-grid {
+        grid-template-areas:
+            "selected-location"
+            "locations";
+        grid-template-rows: auto auto auto;
+    }
+    /* css for articles page */
+    .article-list, .my-articles {
+        grid-template-columns: 1fr; 
     }
 }
