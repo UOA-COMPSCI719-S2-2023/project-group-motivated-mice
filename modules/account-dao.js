@@ -59,12 +59,12 @@ async function retrieveAccountIDWithCredentials(username, password) {
  * 
  * @param {string} authToken the account's authentication token
  */
-async function retrieveUserWithAuthToken(authToken) {
+async function retrieveUserWithAuthToken(AuthToken) {
     const db = await dbPromise;
 
     const account = await db.get(SQL`
         select * from Account
-        where authToken = ${authToken}`);
+        where AuthToken = ${AuthToken}`);
 
     return account;
 }
@@ -112,7 +112,7 @@ async function updateAccount(user) {
 
     await db.run(SQL`
         update Account
-        set UserName = ${user.UserName}, HashedPassword = ${user.HashedPassword}, AuthToken = ${user.authToken}
+        set UserName = ${user.UserName}, HashedPassword = ${user.HashedPassword}, AuthToken = ${user.AuthToken}
         where AccountID = ${user.AccountID}`);
 }
 

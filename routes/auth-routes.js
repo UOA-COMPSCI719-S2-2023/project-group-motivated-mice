@@ -31,16 +31,17 @@ router.post("/login", async function (req, res) {
 
     // Find a matching user in the database
     const user = await accountDao.retrieveAccountWithCredentials(username, password);
-
-    // console.log(user);
+    
+  
 
     // if there is a matching user...
     if (user) {
         // Auth success - give that user an authToken, save the token in a cookie, and redirect to the homepage.
-        const authToken = uuid();
-        user.authToken = authToken;
+        const AuthToken = uuid();
+        user.AuthToken = AuthToken;
+  
         await accountDao.updateAccount(user);
-        res.cookie("authToken", authToken);
+        res.cookie("authToken", AuthToken);
         res.locals.user = user;
         res.redirect("/");
     }

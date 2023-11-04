@@ -27,6 +27,8 @@ router.get("/",async function(req, res) {
   });
     
 router.get("/location", async function(req, res) {
+  if(req.cookies.authToken){
+    res.locals.loggedIn = "true";}
 
     res.locals.title = "Locations";
     res.locals.allLocations = await locationDAO.retrieveAllLocations();
@@ -36,6 +38,8 @@ router.get("/location", async function(req, res) {
 });
 
 router.get("/author", async function (req, res) {
+  if(req.cookies.authToken){
+    res.locals.loggedIn = "true";}
 
   res.locals.title = "Authors";
   res.locals.allAuthors = await accountDAO.retrieveAllAccounts();
@@ -45,18 +49,26 @@ router.get("/author", async function (req, res) {
 });
 
 router.get("/gallery", async function (req, res) {
-    let articlesList = await articleDAO.retrieveAllArticles();
+  if(req.cookies.authToken){
+    res.locals.loggedIn = "true";}
+
+    const articlesList = await articleDAO.retrieveAllArticles();
     const thumbnailList = await articleDAO.retrieveAllThumbnails();
   
     res.locals.articles = articlesList;
     res.locals.images = thumbnailList;
   
-    //userid TODO fix the hardcoing on this 
-  
-    let userid = 1;
+    
+    const AuthToken = req.cookies.authToken;
+    const user = await accountDAO.retrieveUserWithAuthToken(AuthToken)
+    const userid = user.AccountID;
+    
     if (userid) {
-      let userArticles = await articleDAO.retrieveArticlesByUser(userid);
-      res.locals.userArticles = userArticles;
+     const userArticles = await articleDAO.retrieveArticlesByUser(userid);
+     
+      
+
+     res.locals.userArticles = userArticles;
     }
   
     res.render("gallery");

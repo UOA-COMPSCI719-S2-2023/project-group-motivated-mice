@@ -55,6 +55,8 @@ async function loadAvatars() {
     });
 }
 
+
+
 window.addEventListener("load", loadAvatars);
 
 
