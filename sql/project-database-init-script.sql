@@ -69,16 +69,3 @@ create table Comments (
 -- Update the Articles table
 alter table Articles
 ADD Comments INT DEFAULT 0; -- Add a column to track the number of comments on each article
-
--- insert predefined avatar icons to the Avatar table
-INSERT INTO Avatar (AvatarID, ImageFilePath) VALUES
-    (1, "/images/1.jpg"),
-    (2, "/images/2.jpg"),
-    (3, "/images/3.jpg"),
-    (4, "/images/4.jpg"),
-    (5, "/images/5.jpg"),
-    (6, "/images/6.jpg"),
-    (7, "/images/7.jpg"),
-    (8, "/images/8.jpg"),
-    (9, "/images/9.jpg"),
-    (10, "/images/10.jpg");
