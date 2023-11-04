@@ -1,5 +1,7 @@
 window.addEventListener("load", function () {
- const title = document.querySelector("#title");
+ // not working properly yet
+ 
+  // const title = document.querySelector("#title");
 
   // const uploadImageButtons = document.querySelectorAll(".uploadImage");
   // uploadImageButtons.forEach(function (button) {
