@@ -24,7 +24,7 @@ router.post("/sendEdit", upload.array("imageFile"), async function (req, res) {
   let articleID = req.body.articleNumber;
   // let articleOfInterest = await getArticle.retrieveArticle(articleID);
   if (!(typeof firstImage === "undefined")) {
-     await uploadImage.updateImageOfArticle(images, articleID, firstImage)
+     await uploadImage.updateImageOfArticle(images, articleID, firstImage, userId)
 
   }
   // await postArticle.createPost(userId, content, title);

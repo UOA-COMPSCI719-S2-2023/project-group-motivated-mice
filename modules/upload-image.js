@@ -18,19 +18,25 @@ async function linkImageToArticle(images, userId, firstImage) {
     await postingDao.addImageToSQL(nameArray, userId, thumbnailName);
 };
 
-async function updateImageOfArticle(images,articleID, firstImage) {
+async function updateImageOfArticle(images,articleID, firstImage, userId) {
     const currentImages = await postingDao.getAllImagesOfArticle(articleID);
     console.log("🚀 ~ file: upload-image.js:23 ~ updateImageOfArticle ~ currentImages:", currentImages)
-    // const nameArray = [];
-    // images.forEach(element => {
-    //     const oldFileName = element.path;
-    //     const newFileName = `./public/images/${userId}/${element.originalname}`;
-    //     fs.renameSync(oldFileName, newFileName);
-    //     nameArray.push(element.originalname);
-    // });
-    // const thumbnailName = firstImage.originalname;
-    // await postingDao.updateImageSQL(nameArray, articleID, thumbnailName);
-
+    currentImages.forEach(function(image){
+        const currentFileURL =  `./public/images/${userId}/${image.ImageURL}`;
+        fs.unlink(currentFileURL, (err) => {
+            if (err) throw err;
+            console.log('path/file.txt was deleted');
+          }); 
+    })
+    const nameArray = [];
+    images.forEach(element => {
+        const oldFileName = element.path;
+        const newFileName = `./public/images/${userId}/${element.originalname}`;
+        fs.renameSync(oldFileName, newFileName);
+        nameArray.push(element.originalname);
+    });
+    const thumbnailName = firstImage.originalname;
+    await postingDao.updateImageSQL(nameArray, articleID, thumbnailName);
 }
 
 async function makeUserFolder(userID) {
