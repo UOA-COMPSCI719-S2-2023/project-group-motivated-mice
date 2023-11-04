@@ -15,29 +15,29 @@ async function getMostRecentArticle(userID) {
     const db = await dbPromise;
     const result = await db.get(SQL`SELECT ArticleID from Articles WHERE
     UserID = ${userID} ORDER BY ArticleID desc`);
-    const articleId = result.ArticleID
-    return await articleId;
+    const articleID = result.ArticleID
+    return await articleID;
 }
-async function assignLastImgAsThumbnail(articleId, thumbnailName) {
+async function assignLastImgAsThumbnail(articleID, thumbnailName) {
     const db = await dbPromise;
     await db.run(SQL`
     UPDATE Images
-    SET Thumbnail = ${articleId} 
+    SET Thumbnail = ${articleID} 
     WHERE 
-        ArticleID = ${articleId}  AND ImageURL = ${thumbnailName}`
+        ArticleID = ${articleID}  AND ImageURL = ${thumbnailName}`
     );
 
 }
-async function getImagesFromId(articleId) {
+async function getImagesFromId(articleID) {
     const db = await dbPromise;
-    const image = await db.all(SQL`SELECT * FROM Images WHERE ArticleID = ${articleId}`)
+    const image = await db.all(SQL`SELECT * FROM Images WHERE ArticleID = ${articleID}`)
     return await image;
 }
 
 async function retrieveSingleArticleId(AuthorId, content) {
     const db = await dbPromise;
-    const articleId = await db.get(SQL`SELECT ArticleID FROM Articles WHERE UserID = ${AuthorId} AND Content = ${content}`)
-    return await articleId;
+    const articleID = await db.get(SQL`SELECT ArticleID FROM Articles WHERE UserID = ${AuthorId} AND Content = ${content}`)
+    return await articleID;
 };
 async function retrieveAllArticles() {
     const db = await dbPromise;
@@ -66,7 +66,7 @@ async function retrieveTitlesOfAllArticles() {
 
 
 
-async function retrieveAllThumbnails(articleId) {
+async function retrieveAllThumbnails(articleID) {
     const db = await dbPromise;
     const thumbnails = await db.all(SQL`
     SELECT * 
@@ -75,30 +75,30 @@ async function retrieveAllThumbnails(articleId) {
     return thumbnails;
 }
 
-async function getUserByArticle(articleId) {
+async function getUserByArticle(articleID) {
     const db = await dbPromise;
     const userId = await db.get(SQL`
     SELECT UserID
     FROM Articles
-    WHERE ArticleID = ${articleId}
+    WHERE ArticleID = ${articleID}
     `);
     return userId;
 }
 
-async function deletePrevImages(articleId) {
+async function deletePrevImages(articleID) {
     const db = await dbPromise;
     await db.run(SQL`
     DELETE FROM Images
     WHERE 
-    ArticleID = ${articleId}
+    ArticleID = ${articleID}
     `);
 }
 
-async function updateImageSQL(articleId, namesOfImage, thumbnailName) {
+async function updateImageSQL(ArticleID, namesOfImage, thumbnailName) {
     const db = await dbPromise;
     //Looping the list of names of images to link image to an Article ID
     for await (const name of namesOfImage) {
-        db.run(SQL``);
+        db.run(SQL`insert into Images (imageURL, ArticleID) VALUES (${name}, ${ArticleID})`);
     }
     await assignLastImgAsThumbnail(ArticleID, thumbnailName);
 }
@@ -114,5 +114,6 @@ module.exports = {
     retrieveAllThumbnails,
     retrieveArticlesByUser,
     getUserByArticle,
-    deletePrevImages
+    deletePrevImages,
+    updateImageSQL
 };
