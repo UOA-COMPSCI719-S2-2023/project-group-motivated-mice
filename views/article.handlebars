@@ -26,8 +26,14 @@
         </div>
     </form>
 
-    {{!-- <a href="./editArticle">Edit the article</a> --}}
-    <a href="">Delete the article</a>
+    {{!-- <a href="">Delete the article</a> --}}
+
+    <form id= "theDeleteForm" action="/deleteArticle">
+        <div id="form-edit-form">
+            <input type="hidden" id="postId" name="postID" value = {{articleId}}>
+            <button type="submit">Delete the article!</button>
+        </div>
+    </form>
     <a href="/gallery">Back to Gallery</a>
 
     {{else}}
