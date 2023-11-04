@@ -65,7 +65,6 @@ async function retrieveTitlesOfAllArticles() {
 }
 
 
-
 async function retrieveAllThumbnails(articleID) {
     const db = await dbPromise;
     const thumbnails = await db.all(SQL`
@@ -114,6 +113,17 @@ async function getAllImagesOfArticle(ArticleID) {
     return await images;
 }
 
+async function updateArticleDetails(ArticleID, Title, Content){
+    const db = await dbPromise;
+     await db.run(SQL`
+    UPDATE Articles
+    SET Title = ${Title},
+        Content = ${Content}
+    WHERE
+    ArticleID = ${ArticleID}
+    `);
+}
+
 module.exports = {
     addImageToSQL,
     getMostRecentArticle,
@@ -127,5 +137,6 @@ module.exports = {
     getUserByArticle,
     deletePrevImages,
     updateImageSQL,
-    getAllImagesOfArticle
+    getAllImagesOfArticle,
+    updateArticleDetails
 };

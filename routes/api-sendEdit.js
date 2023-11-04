@@ -8,7 +8,7 @@ const fs = require("fs");
 const upload = require("../middleware/multer-uploader.js");
 
 const testDao = require("../modules/test-dao.js");
-const postArticle = require("../modules/make-article.js");
+// const postArticle = require("../modules/make-article.js");
 const uploadImage = require("../modules/upload-image.js");
 const postingDAO = require("../modules/posting-dao.js")
 
@@ -27,6 +27,7 @@ router.post("/sendEdit", upload.array("imageFile"), async function (req, res) {
      await uploadImage.updateImageOfArticle(images, articleID, firstImage, userId)
 
   }
+  await postingDAO.updateArticleDetails(articleID, title, content);
   // await postArticle.createPost(userId, content, title);
 
 
