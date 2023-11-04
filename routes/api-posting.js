@@ -12,7 +12,6 @@ const postArticle = require("../modules/make-article.js");
 const uploadImage = require("../modules/upload-image.js")
 
 
-
 //register the article in the database.
 router.post("/writeArticle",  upload.array("imageFile"), async function (req, res) {
   //userId
