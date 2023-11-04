@@ -1,59 +1,76 @@
-<div>
-    <h1>Create an Account</h1>
+<head>
+    <meta charset="UTF-8">
+    <title>{{pageTitle}}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
 
-    <form action="/create-account" method="POST" onsubmit="return validatePasswords();">
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username"  oninput="checkUsername()" required>
-            <span id="username-message"></span>
-        </div>
+<header>
+    <h1>Travel Blog</h1>
+    <nav id="nav-bar">
+        <a href="/">Home</a>
+        <a href="/create-account">Create an account</a>
+        <a href="/login">Login</a>
+    </nav>
+</header>
 
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
+<body>
+    <div id="container">
 
-        <div>
-            <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" required>
-            <span id="password-message"></span>
-        </div>
+        <form action="/create-account" method="POST" onsubmit="return validatePasswords();">
+            <h1>Create an Account</h1>
+            <div class="info">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" oninput="checkUsername()" required>
+                <span id="username-message"></span>
+            </div>
 
-        <div>
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" required>
-        </div>
+            <div class="info">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
 
-        <div>
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" required>
-        </div>
+            <div class="info">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <span id="password-message"></span>
+            </div>
 
-        <div>
-            <label for="birthday">Birthday:</label>
-            <input type="date" id="birthday" name="birthday" required>
-        </div>
+            <div class="info">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
 
-        <div>
-            <label for="email">Email Address:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
+            <div class="info">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
 
-        <div>
-            <label for="des">About Me:</label>
-            <textarea id="des" name="des" rows="4" cols="50" placeholder="Tell us something about yourself"></textarea>
-        </div>
+            <div class="info">
+                <label for="birthday">Birthday:</label>
+                <input type="date" id="birthday" name="birthday" required>
+            </div>
 
-        <div>
-            <label for="avatar">Choose an Avatar:</label>
-            <select id="avatar" name="avatar">
-                <!-- Option elements will be added here dynamically -->
-            </select>
-        </div>
+            <div class="info">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
 
-        <button type="submit">Create Account</button>
-    </form>
+            <div class="info">
+                <label for="des">About Me:</label>
+                <textarea id="des" name="des" rows="4" cols="50"
+                    placeholder="Tell us something about yourself"></textarea>
+            </div>
 
-</div>
+            <div class="info">
+                <label for="avatar">Choose an Avatar:</label>
+                <select id="avatar" name="avatar">
+                    <!-- Option elements will be added here dynamically -->
+                </select>
+            </div>
+
+            <button type="submit">Create Account</button>
+        </form>
+    </div>
+</body>
 
 <script src="js/client.js"></script>
