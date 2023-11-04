@@ -16,8 +16,11 @@ async function linkImageToArticle(images, userId, firstImage) {
     });
     const thumbnailName = firstImage.originalname;
     await postingDao.addImageToSQL(nameArray, userId, thumbnailName);
-   
 };
+
+async function updateImageOfArticle(images,articleID, firstImage) {
+    
+}
 
 async function makeUserFolder(userID) {
     const folderName = `./public/images/${userID}`;
