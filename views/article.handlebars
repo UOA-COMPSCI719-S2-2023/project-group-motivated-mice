@@ -1,4 +1,5 @@
 {{#if articleEntry}}
+<script src="/imageInArticle.js"></script>
 <h1>
     {{article.Title}}
 </h1>
@@ -10,16 +11,17 @@
 <div id="content">
     {{{article.Content}}}
 </div>
-<div id="images">
+<div data-article={{author.UserID}} id="images">
 
     {{#each images}}
-
+    <img class = "images" data-article={{this.ImageURL}}>
     {{/each }}
     <a href="" id="author_info" data-author={{article.UserID}}>
         author's page
     </a>
     <a href="./editArticle">Edit the article</a>
     <a href="">Delete the article</a>
+
     {{else}}
     <p>No article available.</p>
     {{/if}}
