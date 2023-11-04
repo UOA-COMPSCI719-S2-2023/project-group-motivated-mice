@@ -55,6 +55,6 @@ router.get("/gallery", async function (req, res) {
 
 
 
-
+  router.use("/api", require("./api/api-routes.js"));
 
 module.exports = router;
