@@ -45,6 +45,15 @@ async function retrieveAllArticles() {
     return await articles;
 }
 
+async function retrieveArticlesByUser(userID) {
+    const db = await dbPromise;
+    const articles = await db.all(SQL`
+    SELECT * 
+        FROM Articles 
+        WHERE UserID = ${userID}`);
+    return await articles;
+}
+
 async function retrieveTitlesOfAllArticles() {
     const db = await dbPromise;
     const titles = await db.all(SQL`select Title from Articles`);
@@ -74,5 +83,6 @@ module.exports = {
     retrieveAllArticles,
     retrieveTitlesOfAllArticles,
     assignLastImgAsThumbnail,
-    retrieveAllThumbnails
+    retrieveAllThumbnails,
+    retrieveArticlesByUser
 };
