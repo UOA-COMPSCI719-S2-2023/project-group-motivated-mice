@@ -4,6 +4,7 @@ const router = express.Router();
 const testDao = require("../modules/test-dao.js");
 const accountDAO = require("../modules/account-dao.js");
 const locationDAO = require("../modules/location-dao.js");
+const articles = require("../modules/posting-dao.js");
 
 
 
@@ -33,17 +34,27 @@ router.get("/location", async function(req, res) {
     res.render("location");
 });
 
-router.use("/api", require("./api/api-routes.js"));
+router.get("/gallery", async function (req, res) {
+    let articlesList = await articles.retrieveAllArticles();
+    const thumbnailList = await articles.retrieveAllThumbnails();
+  
+    res.locals.articles = articlesList;
+    res.locals.images = thumbnailList;
+  
+    //userid 
+  
+    let userid = 1;
+    if (userid) {
+      let userArticles = await articles.retrieveArticlesByUser(userid);
+      res.locals.userArticles = userArticles;
+    }
+  
+    res.render("gallery");
+  });
 
 
 
 
 
-const registerRoutes = require("./register-routes.js");
-router.use(registerRoutes);
-
-//routes
-const userAccountRoutes = require("./user-routes.js")
-router.use(userAccountRoutes);
 
 module.exports = router;
