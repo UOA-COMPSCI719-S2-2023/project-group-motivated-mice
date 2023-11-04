@@ -17,8 +17,12 @@ app.engine("handlebars", handlebars.engine({
 app.set("view engine", "handlebars");
 
 // Setup body-parser
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 // Setup cookie-parser
 const cookieParser = require("cookie-parser");
@@ -33,6 +37,24 @@ app.use(require("./middleware/toaster-middleware.js"));
 
 
 // Setup routes
+
+app.use(require("./routes/application-routes.js"));
+const openArticleCreator = require("./routes/api-createArticle.js");
+const editArticle = require("./routes/api-editing.js");
+const gallery = require("./routes/api-gallery.js");
+const postArticleForm = require("./routes/api-posting.js");
+const articleViewer = require("./routes/api-article.js");
+const sendEdit = require("./routes/api-sendEdit.js");
+const deleteArticle = require("./routes/api-deletingArticle.js");
+
+app.use(articleViewer);
+app.use(postArticleForm);
+app.use(gallery);
+app.use(openArticleCreator);
+app.use(editArticle);
+app.use(sendEdit);
+app.use(deleteArticle);
+
 const authRouter = require("./routes/auth-routes.js");
 app.use(authRouter);
 
@@ -48,7 +70,10 @@ app.use(registerRouter);
 
 
 
+
 // Start the server running.
 app.listen(port, function () {
     console.log(`The Best App In The World ™️ listening on port ${port}!`);
 });
+
+app.use(express.static(path.join(__dirname, "js")));

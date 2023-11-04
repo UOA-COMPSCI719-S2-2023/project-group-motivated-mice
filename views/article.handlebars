@@ -1,0 +1,41 @@
+{{#if articleEntry}}
+<script src="/imageInArticle.js"></script>
+<h1 id="title">
+    {{article.Title}}
+</h1>
+<h3> By {{article.UserID}}</h3>
+<h3>{{article.PublishDate}}</h3>
+
+
+
+<div id="content">
+    {{{article.Content}}}
+</div>
+<div data-author={{author.UserID}} id="images">
+
+    {{#each images}}
+    <img class="images" data-imageURL={{this.ImageURL}}>
+    {{/each }}
+    <a href="" id="author_info" data-author={{article.UserID}}>
+        author's page
+    </a>
+    <form id= "theEditForm" action="/editArticle">
+        <div id="form-edit-form">
+            <input type="hidden" id="postId" name="postID" value = {{articleId}}>
+            <button type="submit">Edit the article!</button>
+        </div>
+    </form>
+
+    {{!-- <a href="">Delete the article</a> --}}
+
+    <form id= "theDeleteForm" action="/deleteArticle">
+        <div id="form-edit-form">
+            <input type="hidden" id="postId" name="postID" value = {{articleId}}>
+            <button type="submit">Delete the article!</button>
+        </div>
+    </form>
+    <a href="/gallery">Back to Gallery</a>
+
+    {{else}}
+    <p>No article available.</p>
+    {{/if}}

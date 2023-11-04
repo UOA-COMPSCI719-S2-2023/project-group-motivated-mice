@@ -45,6 +45,9 @@ async function deleteTestData(id) {
         where id = ${id}`);
 }
 
+
+
+
 async function getUserWithCredentials(username, password) {
 
    const db = await dbPromise;
@@ -91,6 +94,7 @@ async function retrieveAllAvatars(){
 
     return avatars;
 }
+
 
 // Export functions.
 module.exports = {

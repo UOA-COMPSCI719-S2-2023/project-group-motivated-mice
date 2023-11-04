@@ -1,0 +1,26 @@
+<script src="./galleryMenu.js"></script>
+
+<div class="container">
+    <h1>ARTICLE INDEX / NAVIGATION</h1>
+    <div class="article-list">
+        {{#each articles }}
+        <button data-article="{{ArticleID}}">
+        <a href="./entry/{{ArticleID}}">{{Title}}<br> 
+        <p>{{PublishDate}}</p>
+        </a>
+        </button>
+        {{/each}}
+    </div>
+    <br>
+    <h2>Your articles</h2>
+    <div class="my-articles">
+        {{#each userArticles}}
+        <button data-article="{{ArticleID}}">
+        <a href="./entry/{{ArticleID}}">{{Title}}<br> 
+        <p>{{PublishDate}}</p>
+        </a>
+        </button>
+        {{/each}}
+    </div>
+
+</div>

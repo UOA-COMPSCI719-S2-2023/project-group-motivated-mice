@@ -5,12 +5,14 @@
  */
 
 --Drop tables if they already exist
-drop table if exists Avatar;
-drop table if exists Account;
-drop table if exists Articles;
-drop table if exists Images;
+
 drop table if exists Comments;
+drop table if exists Images;
+drop table if exists Articles;
+drop table if exists Account;
+drop table if exists Avatar;
 drop table if exists Location;
+
 
 --Create the Avatar table
 create table Avatar (
@@ -20,7 +22,9 @@ create table Avatar (
 
 --Create the Account table
 create table Account (
-    AccountID integer primary key AUTOINCREMENT,
+
+    AccountID INTEGER NOT NULL primary key AUTOINCREMENT,
+
     UserName VARCHAR(50),
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
@@ -38,24 +42,30 @@ create table Account (
 
 -- Create the Articles table
 create table Articles (
-    ArticleID int primary key,
+
+    ArticleID INTEGER NOT NULL primary key,
     UserID int,
     LocationID int,
+
     PublishDate timestamp,
     Likes int,
     Title VARCHAR(255) NOT NULL,
     Content text,
     FOREIGN KEY (UserID) REFERENCES Account(AccountID)  -- Establish the relationship
     FOREIGN KEY (LocationID) REFERENCES Location(LocationID)
+
 );
 
 
 -- Create the Image table
 create table Images (
-    ImageID int primary key,
-    ArticleID int,  -- Associates an image with an article
-    ImageURL VARCHAR(255) NOT NULL,  -- Stores the URL to the image file
-    FOREIGN KEY (ArticleID) REFERENCES Articles(ArticleID)
+    ImageID  INTEGER NOT NULL primary key,
+    ArticleID INTEGER,  -- Associates an image with an article
+    ImageURL VARCHAR(255) NOT NULL,  -- Stores the URL to the image file,
+	Thumbnail INTEGER, -- stores the ArticleID for which image is a thumbnail
+    FOREIGN KEY (ArticleID) REFERENCES Articles(ArticleID),
+	FOREIGN KEY (Thumbnail) REFERENCES Articles(ArticleID)
+
 );
 
 -- Create the Comments table
@@ -72,6 +82,16 @@ create table Comments (
 -- Update the Articles table
 alter table Articles
 ADD Comments INT DEFAULT 0; -- Add a column to track the number of comments on each article
+
+
+--for testing 
+insert into Account (UserName, FirstName, LastName, EmailAddress, DateOfBirth, About, Likes) values
+('pokemon', 'Jane', 'Doe', 'jane.doe@gmail.com', date('1980-10-05'), 'hello world', 0),
+('digimon', 'John', 'Smith', 'john.smith@gmail.com', date('1966-02-05'), 'Windows Me is the best Windows', 0);
+
+insert into Articles (UserID, PublishDate, Likes, Title, Content) values 
+(1,date('2023-10-25'), '0', 'hello', '<p>hello world<p>'),
+(2,date('2023-10-15'), '0', 'hello', '<p>How are you<p>');
 
 -- creates the Location table
 create table Location (
@@ -147,4 +167,5 @@ VALUES
 ('12','1','3/11/2023','465','Soothe your soul with leisurely activities at Auckland' ,'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','0','1'),
 ('13','1','28/9/2023','34',' 4 quaint coffee shops to hang out in Devonport','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','0','1'),
 ('14','1','3/11/2023','672','What to do on a 3 day vacation to Queenstown','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','0','16');
+
 

@@ -7,6 +7,10 @@ const locationDAO = require("../modules/location-dao.js");
 
 
 
+router.get("/", async function(req, res) {
+
+
+
 router.get("/",async function(req, res) {
     if(req.cookies.authToken){
     res.locals.loggedIn = "true";
