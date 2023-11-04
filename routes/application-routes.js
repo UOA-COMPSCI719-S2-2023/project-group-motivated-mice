@@ -11,35 +11,37 @@ const articleDAO = require("../modules/article-dao.js");
 
 
 
-router.get("/",async function(req, res) {
-    if(req.cookies.authToken){
+router.get("/", async function (req, res) {
+  if (req.cookies.authToken) {
     res.locals.loggedIn = "true";
     res.locals.title = "Verified user!";
     res.locals.allTestData = await testDao.retrieveAllTestData();
-    }
-    else{
+  }
+  else {
     res.locals.title = "NOT VERIFIED";
     res.locals.loggedIn = null;
-    }
+  }
 
-    res.render("home");
-  
-  });
-    
-router.get("/location", async function(req, res) {
-  if(req.cookies.authToken){
-    res.locals.loggedIn = "true";}
+  res.render("home");
 
-    res.locals.title = "Locations";
-    res.locals.allLocations = await locationDAO.retrieveAllLocations();
-    res.locals.topLocations = await locationDAO.retrieveTopLocations();
-    res.render("location");
+});
+
+router.get("/location", async function (req, res) {
+  if (req.cookies.authToken) {
+    res.locals.loggedIn = "true";
+  }
+
+  res.locals.title = "Locations";
+  res.locals.allLocations = await locationDAO.retrieveAllLocations();
+  res.locals.topLocations = await locationDAO.retrieveTopLocations();
+  res.render("location");
 
 });
 
 router.get("/author", async function (req, res) {
-  if(req.cookies.authToken){
-    res.locals.loggedIn = "true";}
+  if (req.cookies.authToken) {
+    res.locals.loggedIn = "true";
+  }
 
   res.locals.title = "Authors";
   res.locals.allAuthors = await accountDAO.retrieveAllAccounts();
@@ -49,34 +51,31 @@ router.get("/author", async function (req, res) {
 });
 
 router.get("/gallery", async function (req, res) {
-  if(req.cookies.authToken){
-    res.locals.loggedIn = "true";}
+  const AuthToken = req.cookies.authToken;
+  let user = "";
+  if (req.cookies.authToken) {
+    user = await accountDAO.retrieveUserWithAuthToken(AuthToken)
+    res.locals.loggedIn = "true";
+  }
 
-    const articlesList = await articleDAO.retrieveAllArticles();
-    const thumbnailList = await articleDAO.retrieveAllThumbnails();
-  
-    res.locals.articles = articlesList;
-    res.locals.images = thumbnailList;
-  
-    
-    const AuthToken = req.cookies.authToken;
-    const user = await accountDAO.retrieveUserWithAuthToken(AuthToken)
+  const articlesList = await articleDAO.retrieveAllArticles();
+  const thumbnailList = await articleDAO.retrieveAllThumbnails();
+
+  res.locals.articles = articlesList;
+  res.locals.images = thumbnailList;
+
+  if (await user !== "") {
     const userid = user.AccountID;
-    
-    if (userid) {
-     const userArticles = await articleDAO.retrieveArticlesByUser(userid);
-     
-      
+    const userArticles = await articleDAO.retrieveArticlesByUser(userid);
+    res.locals.userArticles = userArticles;
+  }
 
-     res.locals.userArticles = userArticles;
-    }
-  
-    res.render("gallery");
-  });
+  res.render("gallery");
+});
 
 
 
 
-  router.use("/api", require("./api/api-routes.js"));
+router.use("/api", require("./api/api-routes.js"));
 
 module.exports = router;
