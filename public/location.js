@@ -13,7 +13,7 @@ addeventlisteners();
   }
 
   async function fetchAndDisplaySelectedLocation(LocationID,res) {
-    const response = await fetch(`/api/location/${LocationID}`); // needs yo use an api route
+    const response = await fetch(`./api/location/${LocationID}`); // needs yo use an api route
     const LocationSelected = await response.json();
     displaySelectedLocation(LocationSelected);
   }
@@ -21,7 +21,7 @@ addeventlisteners();
   async function displaySelectedLocation(LocationSelected,res){
     const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${LocationSelected.Latitude}&lon=${LocationSelected.Longitude}&exclude=minutely,hourly,daily,alerts&units=metric&appid=04a1f24d5b23131ed6fcb89c0e53be9a`);
     const weather = await response.json();
-    const response2 =  await fetch(`/api/location/articles/${LocationSelected.LocationID}`);
+    const response2 =  await fetch(`./api/location/articles/${LocationSelected.LocationID}`);
     const articles = await response2.json();
     const selectedName = document.getElementById("selectedName");
     const selectedDescription = document.getElementById("selectedDescription");

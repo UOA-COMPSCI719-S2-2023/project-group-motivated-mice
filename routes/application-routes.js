@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const testDao = require("../modules/test-dao.js");
-const accountDAO = require("../modules/account-dao.js");
+const accountDAO = require("../modules/account-dao.js"); // needed for homepage additions
 const locationDAO = require("../modules/location-dao.js");
-const articles = require("../modules/posting-dao.js");
+const articleDAO = require("../modules/article-dao.js");
 
 
 
@@ -35,17 +35,17 @@ router.get("/location", async function(req, res) {
 });
 
 router.get("/gallery", async function (req, res) {
-    let articlesList = await articles.retrieveAllArticles();
-    const thumbnailList = await articles.retrieveAllThumbnails();
+    let articlesList = await articleDAO.retrieveAllArticles();
+    const thumbnailList = await articleDAO.retrieveAllThumbnails();
   
     res.locals.articles = articlesList;
     res.locals.images = thumbnailList;
   
-    //userid 
+    //userid TODO fix the hardcoing on this 
   
     let userid = 1;
     if (userid) {
-      let userArticles = await articles.retrieveArticlesByUser(userid);
+      let userArticles = await articleDAO.retrieveArticlesByUser(userid);
       res.locals.userArticles = userArticles;
     }
   

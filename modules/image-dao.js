@@ -2,7 +2,7 @@
 // const dbPromise = require("./database.js");
 const fs = require("fs");
 //const jimp = require("jimp");
-const postingDao = require("./posting-dao.js");
+const postingDao = require("./article-dao.js");
 
 async function linkImageToArticle(images, userId, firstImage) {
     makeUserFolder(userId);
