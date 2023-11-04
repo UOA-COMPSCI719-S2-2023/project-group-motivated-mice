@@ -75,6 +75,16 @@ async function retrieveAllThumbnails(articleId) {
     return thumbnails;
 }
 
+async function getUserByArticle(articleId){
+    const db = await dbPromise;
+    const userId = await db.get(SQL`
+    SELECT UserID
+    FROM Articles
+    WHERE ArticleID = ${articleId}
+    `);
+    return userId;
+}
+
 module.exports = {
     addImageToSQL,
     getMostRecentArticle,
@@ -84,5 +94,6 @@ module.exports = {
     retrieveTitlesOfAllArticles,
     assignLastImgAsThumbnail,
     retrieveAllThumbnails,
-    retrieveArticlesByUser
+    retrieveArticlesByUser,
+    getUserByArticle
 };
