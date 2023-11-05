@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const testDao = require("../modules/test-dao.js");
+
 const accountDAO = require("../modules/account-dao.js"); // needed for homepage additions
 const locationDAO = require("../modules/location-dao.js");
 const articleDAO = require("../modules/article-dao.js");
@@ -14,13 +14,8 @@ const articleDAO = require("../modules/article-dao.js");
 router.get("/",async function(req, res) {
     if(req.cookies.authToken){
     res.locals.loggedIn = "true";
-    res.locals.title = "Verified user!";
-    res.locals.allTestData = await testDao.retrieveAllTestData();
-    }
-    else{
-    res.locals.title = "NOT VERIFIED";
-    res.locals.loggedIn = null;
-    }
+ }
+
 
     res.render("home");
   
@@ -50,27 +45,23 @@ router.get("/author", async function (req, res) {
 
 router.get("/gallery", async function (req, res) {
   if(req.cookies.authToken){
-    res.locals.loggedIn = "true";}
+    res.locals.loggedIn = "true";
+        
+   const AuthToken = req.cookies.authToken;
+   const user = await accountDAO.retrieveUserWithAuthToken(AuthToken)
+   const userid = user.AccountID;
+   if (userid) {
+    const userArticles = await articleDAO.retrieveArticlesByUser(userid);
+    res.locals.userArticles = userArticles;
+   }
+  }
 
-    const articlesList = await articleDAO.retrieveAllArticles();
-    const thumbnailList = await articleDAO.retrieveAllThumbnails();
+  const articlesList = await articleDAO.retrieveAllArticles();
+  const thumbnailList = await articleDAO.retrieveAllThumbnails();
   
-    res.locals.articles = articlesList;
-    res.locals.images = thumbnailList;
-  
-    
-    const AuthToken = req.cookies.authToken;
-    const user = await accountDAO.retrieveUserWithAuthToken(AuthToken)
-    const userid = user.AccountID;
-    
-    if (userid) {
-     const userArticles = await articleDAO.retrieveArticlesByUser(userid);
-     
-      
-
-     res.locals.userArticles = userArticles;
-    }
-  
+  res.locals.articles = articlesList;
+  res.locals.images = thumbnailList;
+   
     res.render("gallery");
   });
 

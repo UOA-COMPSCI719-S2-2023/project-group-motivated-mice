@@ -31,7 +31,7 @@ router.post("/create-account", async function(req,res){
 
     await userDb.createAcountData(userDetails);
 
-    res.redirect("/");
+    res.redirect("/login");
 });
 
 //To check if the input username exists
