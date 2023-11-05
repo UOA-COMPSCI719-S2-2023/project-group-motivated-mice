@@ -14,6 +14,8 @@ const upload = require("../middleware/multer-uploader.js");
 
 // render an article
 router.get("/entry/:id", async function (req, res) {
+  if(req.cookies.authToken){
+    res.locals.loggedIn = "true";}
   let submittedId = req.params[`id`];
   const article = await articleDAO.retrieveArticle(submittedId);
   res.locals.articleId = submittedId;
@@ -29,11 +31,15 @@ router.get("/entry/:id", async function (req, res) {
 });
 
 router.get("/posting", function (req, res) {
+  if(req.cookies.authToken){
+    res.locals.loggedIn = "true";}
 
   res.render("posting");
 });
 
 router.get("/deleteArticle", async function (req, res) {
+  if(req.cookies.authToken){
+    res.locals.loggedIn = "true";}
   let articleId = req.query.postID;
 
   // let article = await getArticle.retrieveArticle(articleId);
@@ -48,6 +54,8 @@ router.get("/deleteArticle", async function (req, res) {
 
 //render the page with editor and all stored details loaded
 router.get("/editArticle", async function (req, res) {
+  if(req.cookies.authToken){
+    res.locals.loggedIn = "true";}
   let articleId = req.query.postID;
   let article = await articleDAO.retrieveArticle(articleId);
   res.locals.article = await article;
@@ -58,8 +66,11 @@ router.get("/editArticle", async function (req, res) {
 
 //register the article in the database.
 router.post("/writeArticle", upload.array("imageFile"), async function (req, res) {
+  
   //userId
   const authToken = req.cookies.authToken;
+  if(req.cookies.authToken){
+    res.locals.loggedIn = "true";}
 
   // Retrieve the user object based on authToken
   const user = await accountDb.retrieveUserWithAuthToken(authToken);
@@ -81,7 +92,8 @@ router.post("/writeArticle", upload.array("imageFile"), async function (req, res
 
 router.post("/sendEdit", upload.array("imageFile"), async function (req, res) {
   //userId
-  
+  if(req.cookies.authToken){
+    res.locals.loggedIn = "true";}
   const authToken = req.cookies.authToken;
 
   // Retrieve the user object based on authToken
