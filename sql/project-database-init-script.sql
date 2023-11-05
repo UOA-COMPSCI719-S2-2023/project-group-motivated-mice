@@ -52,10 +52,12 @@ create table Articles (
 
 -- Create the Image table
 create table Images (
-    ImageID int primary key,
-    ArticleID int,  -- Associates an image with an article
-    ImageURL VARCHAR(255) NOT NULL,  -- Stores the URL to the image file
-    FOREIGN KEY (ArticleID) REFERENCES Articles(ArticleID)
+    ImageID  INTEGER NOT NULL primary key,
+    ArticleID INTEGER,  -- Associates an image with an article
+    ImageURL VARCHAR(255) NOT NULL,  -- Stores the URL to the image file,
+	Thumbnail INTEGER, -- stores the ArticleID for which image is a thumbnail
+    FOREIGN KEY (ArticleID) REFERENCES Articles(ArticleID),
+	FOREIGN KEY (Thumbnail) REFERENCES Articles(ArticleID)
 );
 
 -- Create the Comments table
