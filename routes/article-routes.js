@@ -57,6 +57,7 @@ router.get("/editArticle", async function (req, res) {
 });
 
 //register the article in the database.
+
 router.post("/writeArticle", upload.array("imageFile"), async function (req, res) {
   //userId
   const authToken = req.cookies.authToken;
@@ -81,7 +82,6 @@ router.post("/writeArticle", upload.array("imageFile"), async function (req, res
 
 router.post("/sendEdit", upload.array("imageFile"), async function (req, res) {
   //userId
-  
   const authToken = req.cookies.authToken;
 
   // Retrieve the user object based on authToken
