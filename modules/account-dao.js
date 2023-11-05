@@ -59,12 +59,12 @@ async function retrieveAccountIDWithCredentials(username, password) {
  * 
  * @param {string} authToken the account's authentication token
  */
-async function retrieveUserWithAuthToken(AuthToken) {
+async function retrieveUserWithAuthToken(authToken) {
     const db = await dbPromise;
 
     const account = await db.get(SQL`
         select * from Account
-        where AuthToken = ${AuthToken}`);
+        where AuthToken = ${authToken}`);
 
     return account;
 }
