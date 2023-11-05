@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
 
     <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
-    
+
     {{#if title}}
     <title>{{title}}</title>
     {{else}}
@@ -22,23 +22,23 @@
 
 <body>
     <header>
-    <h1>Travel Blog</h1>
-    <nav class="nav-bar">
-     <a class="active" href="/">Home</a>
-     <a href="./gallery">View Articles</a>
-     <a href="./author">View Authors</a>
-     <a href="./location">View Locations</a>
+        <h1>Travel Blog</h1>
+        <nav class="nav-bar">
+            <a class="active" href="/">Home</a>
+            <a href="./gallery">View Articles</a>
+            <a href="./author">View Authors</a>
+            <a href="./location">View Locations</a>
 
-    {{#if loggedIn}} 
-     <a href="./logout">Logout</a>
-     <a href="./posting">Create An Article</a>
-     <a href="./my-profile">View Your Profile</a>
-    {{else}}
-     <a href="./login">Login</a>
-     <a href="./create-account">Create an account</a>
-    {{/if}}
+            {{#if loggedIn}}
+            <a href="./logout">Logout</a>
+            <a href="./posting">Create An Article</a>
+            <a href="./my-profile">View Your Profile</a>
+            {{else}}
+            <a href="./login">Login</a>
+            <a href="./create-account">Create an account</a>
+            {{/if}}
 
-    </nav>
+        </nav>
     </header>
 
     {{{body}}}
