@@ -93,4 +93,23 @@ create table Location (
     Longitude VARCHAR(255)
 );
 
+--create an account first to get the dummy data below work
 INSERT INTO Avatar(AvatarID) VALUES (1);
+INSERT INTO Account VALUES(1,
+"testuser", 
+"test", 
+"user",
+"testuser@auckland.ac.nz",
+date('2023-02-02'),
+"testing",
+NULL,
+"$2b$10$ZPyDNhd8tEJkvKwwU5CML.G9vRLJmb.F9xf6e.fOLDWu8MZY8mqhi", --it's abcd
+"125d664f-8ff8-4373-ade0-eb7d3047ea96",
+1);
+INSERT INTO Articles (ArticleID, UserID, PublishDate, Likes, Title, Content) VALUES 
+(1,
+ 1,
+ date('2023-10-25'),
+ 0, 
+"My slave human didn't give me any food so i pooped on the floor kitty cat slap dog in face",
+"<p>Hello<p>")
