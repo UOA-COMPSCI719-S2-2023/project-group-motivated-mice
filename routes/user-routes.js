@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const accountDb = require("../modules/account-dao");
+const articleDb = require("../modules/article-dao");
 
 // Route to handle the request when a user clicks on the "View profile" button 
 router.get("/my-profile", async function (req, res) {
@@ -25,8 +26,8 @@ router.get("/user/:userId",async function(req, res){
     //fetch user data from database
     const user = await accountDb.retrieveAccountById(userId);
     const avatar = await accountDb.retrieveAvatarById(user.AvatarID);
-    const articles = await accountDb.retrieveArticlesById(userId);
-    const topArticles = await accountDb.retrieveTopArticles();
+    const articles = await articleDb.retrieveArticlesByUser(userId);
+    const topArticles = await articleDb.retrieveTopArticles();
 
     res.render("user-account", {user, avatar, articles, topArticles});
 
