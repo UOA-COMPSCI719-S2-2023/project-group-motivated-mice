@@ -44,7 +44,6 @@ async function loadAvatars() {
     const response = await fetch('/get-avatars');
     const avatars = await response.json();
 
-    console.log(avatars);
 
     const avatarSelect = document.querySelector('#avatar');
     avatars.forEach(avatar => {
