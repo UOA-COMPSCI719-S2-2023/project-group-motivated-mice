@@ -50,27 +50,23 @@ router.get("/author", async function (req, res) {
 
 router.get("/gallery", async function (req, res) {
   if(req.cookies.authToken){
-    res.locals.loggedIn = "true";}
+    res.locals.loggedIn = "true";
+        
+   const AuthToken = req.cookies.authToken;
+   const user = await accountDAO.retrieveUserWithAuthToken(AuthToken)
+   const userid = user.AccountID;
+   if (userid) {
+    const userArticles = await articleDAO.retrieveArticlesByUser(userid);
+    res.locals.userArticles = userArticles;
+   }
+  }
 
-    const articlesList = await articleDAO.retrieveAllArticles();
-    const thumbnailList = await articleDAO.retrieveAllThumbnails();
+  const articlesList = await articleDAO.retrieveAllArticles();
+  const thumbnailList = await articleDAO.retrieveAllThumbnails();
   
-    res.locals.articles = articlesList;
-    res.locals.images = thumbnailList;
-  
-    
-    const AuthToken = req.cookies.authToken;
-    const user = await accountDAO.retrieveUserWithAuthToken(AuthToken)
-    const userid = user.AccountID;
-    
-    if (userid) {
-     const userArticles = await articleDAO.retrieveArticlesByUser(userid);
-     
-      
-
-     res.locals.userArticles = userArticles;
-    }
-  
+  res.locals.articles = articlesList;
+  res.locals.images = thumbnailList;
+   
     res.render("gallery");
   });
 
