@@ -58,7 +58,7 @@ router.get("/editArticle", async function (req, res) {
 //register the article in the database.
 router.post("/writeArticle",  upload.array("imageFile"), async function (req, res) {
     //userId
-    const userId = 2;
+    const userId = 1;
     const images = req.files;
     const firstImage = images[0];
     if (!(typeof firstImage === "undefined")) {
@@ -75,7 +75,7 @@ router.post("/writeArticle",  upload.array("imageFile"), async function (req, re
   
   router.post("/sendEdit", upload.array("imageFile"), async function (req, res) {
     //userId
-    const userId = 2;
+    const userId = 1;
     const title = req.body.title;
     const content = req.body.article;
     const images = req.files;
