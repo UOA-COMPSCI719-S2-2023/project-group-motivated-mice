@@ -3,38 +3,39 @@
 <script src="./custom-quill.js"></script>
 <script src="./preview.js"></script>
 
+<body id="container">
+    <form action="./writeArticle" enctype="multipart/form-data" multiple='multiple' method="POST">
+        <div class="form-group">
+            <label for="title">Title of the post</label>
+            <input type="text" id="title" name="title" required maxlength="255"><br><br>
+            <div id="toolbar">
+            </div>
+            <input type="hidden" id="article" name="article">
+            <div id="editor">
+            </div>
+            <br /><br />
+            <div>
+                <label for="uploadImage">Upload an image here!</label>
+                <input class="uploadImage" id="uploadImage1" type="file" name="imageFile" accept=".png,.jpg,.jpeg,.bmp">
+            </div>
+            <div>
+                <label for="uploadImage">Upload an image here!</label>
+                <input class="uploadImage" id="uploadImage2" type="file" name="imageFile" accept=".png,.jpg,.jpeg,.bmp">
+            </div>
+            <div>
+                <label for="uploadImage">Upload an image here!</label>
+                <input class="uploadImage" id="uploadImage3" type="file" name="imageFile" accept=".png,.jpg,.jpeg,.bmp">
+            </div>
+            <div>
+                <label for="uploadImage">Upload an image here!</label>
+                <input class="uploadImage" id="uploadImage4" type="file" name="imageFile" accept=".png,.jpg,.jpeg,.bmp">
 
-<form id="form" action="./writeArticle" enctype="multipart/form-data" multiple='multiple' method="POST">
-    <div class="form-group">
-        <label for="title">Title of the post</label>
-        <input type="text" id="title" name="title" required maxlength="255"><br><br>
-        <div id="toolbar">
-        </div>
-        <input type="hidden" id="article" name="article">
-        <div id="editor">
-        </div>
-        <br /><br />
-        <div>
-            <label for="uploadImage">Upload an image here!</label>
-            <input class="uploadImage" id="uploadImage1" type="file" name="imageFile" accept=".png,.jpg,.jpeg,.bmp">
-        </div>
-        <div>
-            <label for="uploadImage">Upload an image here!</label>
-            <input class="uploadImage" id="uploadImage2" type="file" name="imageFile" accept=".png,.jpg,.jpeg,.bmp">
-        </div>
-        <div>
-            <label for="uploadImage">Upload an image here!</label>
-            <input class="uploadImage" id="uploadImage3" type="file" name="imageFile" accept=".png,.jpg,.jpeg,.bmp">
-        </div>
-        <div>
-            <label for="uploadImage">Upload an image here!</label>
-            <input class="uploadImage" id="uploadImage4" type="file" name="imageFile" accept=".png,.jpg,.jpeg,.bmp">
+            </div>
 
-        </div>
+            <div id="preview">
 
-        <div id="preview">
-
+            </div>
+            <button id="submit-button" type="submit">Submit form</button>
         </div>
-        <button id="submit-button" type="submit">Submit form</button>
-    </div>
-</form>
+    </form>
+</body>
